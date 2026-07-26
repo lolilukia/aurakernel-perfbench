@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>AuraKernel PerfBench — Open Benchmark Interface</title>
+  <meta name="description" content="An open, dependency-free benchmark interface for AscendC operator-optimization agents.">
+  <link rel="icon" href="assets/logo/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="v2-terminal-theme.css">
+  <script src="mock-data.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body data-preview-state="default">
+  <a class="skip-link" href="#leaderboard">Skip to leaderboard</a>
+
+  <header class="site-header stateful" id="top">
+    <nav class="top-nav page-shell" aria-label="Primary navigation">
+      <a class="mini-lockup" href="#top" aria-label="AuraKernel PerfBench home">
+        <img src="assets/logo/mark-primary.svg" alt="" width="34" height="34">
+        <span>AuraKernel <b>PerfBench</b></span>
+      </a>
+      <div class="nav-links">
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#operators">Operators</a>
+        <a href="#hardware">Hardware</a>
+        <a href="#methodology">Methodology</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" id="search-shortcut" type="button" aria-label="Focus model search" title="Search models (/)" aria-keyshortcuts="/">/</button>
+        <button class="icon-button theme-button" id="theme-toggle" type="button" aria-label="Switch terminal color profile" title="Toggle terminal profile">
+          <span aria-hidden="true">◐</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero page-shell live-content">
+      <div class="hero-mark-wrap">
+        <img class="hero-mark light-logo" src="assets/logo/mark-primary.svg" alt="Aura ring around a tiled compute core" width="96" height="96">
+        <img class="hero-mark dark-logo" src="assets/logo/mark-dark.svg" alt="Aura ring around a tiled compute core" width="96" height="96">
+      </div>
+      <p class="eyebrow">ASCENDC · AGENTIC KERNEL OPTIMIZATION</p>
+      <h1>AuraKernel <span>PerfBench</span></h1>
+      <p class="hero-tagline">A performance benchmark for AscendC operator-optimization agents.</p>
+
+      <div class="resource-row" aria-label="Project resources">
+        <a class="resource-chip" href="#methodology"><span class="resource-icon">M</span> Methodology <span aria-hidden="true">↗</span></a>
+        <a class="resource-chip" href="mock-data.json"><span class="resource-icon hf">{ }</span> Data schema <span aria-hidden="true">↗</span></a>
+        <a class="resource-chip" href="https://github.com/lolilukia/aurakernel-perfbench"><span class="resource-icon gh">GH</span> GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+      <button class="command-chip" id="copy-dataset" type="button" aria-label="Copy sample data generation command">
+        <span class="command-prompt">$</span> node scripts/build-data.mjs <span class="copy-hint">COPY</span>
+      </button>
+
+      <div class="status-row">
+        <span class="status-pill"><span class="pulse-dot"></span> Early-stage · updated 2026-07-26</span>
+        <a href="https://github.com/lolilukia/aurakernel-perfbench#roadmap">Project roadmap <span aria-hidden="true">→</span></a>
+        <span class="placeholder-note">Illustrative data</span>
+      </div>
+
+      <dl class="headline-stats" id="headline-stats"></dl>
+    </div>
+    <div class="skeleton hero-skeleton" aria-hidden="true">
+      <i></i><i></i><i></i><i></i>
+    </div>
+    <div class="empty-state hero-empty" aria-hidden="true">
+      <span class="empty-glyph">AK</span>
+      <strong>Benchmark feed is not connected</strong>
+      <p>The identity and navigation remain available while results are unavailable.</p>
+    </div>
+  </header>
+
+  <div class="prototype-strip" aria-label="Prototype state controls">
+    <div class="page-shell strip-inner">
+      <span><b>UX prototype</b> · component states</span>
+      <div class="segmented" role="group" aria-label="Preview component state">
+        <button type="button" class="is-active" data-state="default">Default</button>
+        <button type="button" data-state="loading">Loading</button>
+        <button type="button" data-state="empty">Empty</button>
+      </div>
+      <a href="design-system.html">Design system board <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+
+  <main>
+    <section class="section page-shell stateful" id="leaderboard" aria-labelledby="leaderboard-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-index">01 / PRIMARY LEADERBOARD</p>
+          <h2 id="leaderboard-title">Model ranking</h2>
+          <p>PerfScore blends correctness, final-kernel performance and cost efficiency. <a href="#methodology">See methodology</a>.</p>
+        </div>
+        <div class="direction-badge"><span>↑</span> higher is better</div>
+      </div>
+
+      <div class="leader-controls live-content" aria-label="Leaderboard controls">
+        <label class="search-field"><span class="sr-only">Search models</span><span aria-hidden="true">⌕</span><input id="model-search" type="search" placeholder="Search models · /" autocomplete="off"></label>
+        <label>Re-rank
+          <select id="rank-metric">
+            <option value="perf_score">PerfScore</option>
+            <option value="perf_gain_median">Performance Gain</option>
+            <option value="cost_efficiency">Cost-efficiency</option>
+            <option value="e2e_pass">E2E Pass Rate</option>
+          </select>
+        </label>
+        <label>Family
+          <select id="family-filter"><option value="all">All families</option></select>
+        </label>
+        <div class="filter-group" role="group" aria-label="Weights filter">
+          <button type="button" class="is-active" data-weights="all">All</button>
+          <button type="button" data-weights="open">Open</button>
+          <button type="button" data-weights="closed">Closed</button>
+        </div>
+        <label>Chip
+          <select id="chip-filter"><option>Ascend 910C</option><option>Ascend 910B</option></select>
+        </label>
+      </div>
+
+      <div class="component-surface chart-surface live-content">
+        <div class="surface-title-row">
+          <div><h3>PerfScore core field</h3><p>Core height = rank metric · inner orbit = E2E · outer orbit = gain/$</p></div>
+          <span class="mono micro-label">N = <b id="rank-count">7</b> MODELS</span>
+        </div>
+        <div id="rank-chart" class="rank-chart" aria-label="Ranked model PerfScore chart"></div>
+      </div>
+
+      <div class="table-wrap component-surface live-content">
+        <table class="leader-table" id="leader-table">
+          <caption class="sr-only">AuraKernel PerfBench model rankings</caption>
+          <thead><tr>
+            <th scope="col">Rank</th><th scope="col">Model</th>
+            <th scope="col"><button data-sort="perf_score">PerfScore ↓</button></th>
+            <th scope="col"><button data-sort="e2e_pass">E2E Pass Rate (%)</button></th>
+            <th scope="col"><button data-sort="perf_gain_median">Performance Gain (%)</button></th>
+            <th scope="col"><button data-sort="task_duration_median_us">Median Task Duration (µs)</button></th>
+            <th scope="col"><button data-sort="tokens_total_k">Total Tokens (k)</button></th>
+            <th scope="col"><button data-sort="api_cost_usd">Total API Cost (USD)</button></th>
+            <th scope="col">Optimization trajectory</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+        <div class="leader-cards" id="leader-cards" aria-label="Mobile leaderboard cards"></div>
+      </div>
+      <div class="skeleton section-skeleton" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="empty-state section-empty" aria-hidden="true"><span class="empty-glyph">00</span><strong>No models match these filters</strong><p>Adjust family, weight or chip filters to restore the ranking.</p></div>
+    </section>
+
+    <section class="section page-shell stateful" id="quality-cost" aria-labelledby="scatter-title">
+      <div class="section-heading">
+        <div><p class="section-index">02 / QUALITY × EFFICIENCY</p><h2 id="scatter-title">Quality versus cost</h2><p>Find models on the Pareto edge: more performance gain at less spend.</p></div>
+        <div class="segmented live-content" role="group" aria-label="Scatter x-axis">
+          <button type="button" class="is-active" data-scatter="cost">API Cost</button>
+          <button type="button" data-scatter="tokens">Tokens</button>
+        </div>
+      </div>
+      <div class="component-surface live-content">
+        <div class="surface-title-row"><div><h3>Pareto constellation</h3><p>Log scale · local vendor marks · curved bands map efficiency zones</p></div><span class="pareto-key"><i></i> Pareto signal edge</span></div>
+        <div id="scatter-chart" class="scatter-chart" aria-label="Performance gain versus cost scatter plot"></div>
+      </div>
+      <div class="skeleton section-skeleton" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="empty-state section-empty" aria-hidden="true"><span class="empty-glyph">↗</span><strong>No comparable cost records</strong><p>Cost or token totals are required to calculate the frontier.</p></div>
+    </section>
+
+    <section class="section page-shell stateful" id="rubric" aria-labelledby="rubric-title">
+      <div class="section-heading">
+        <div><p class="section-index">03 / MULTI-METRIC RUBRIC</p><h2 id="rubric-title">Outcome and process rubric</h2><p>Every column normalizes independently. Descending-is-better metrics invert the ramp.</p></div>
+        <div class="ramp-legend"><span>GOOD</span><i></i><span>BAD</span></div>
+      </div>
+      <div class="component-surface rubric-wrap live-content" id="rubric-table"></div>
+      <div class="skeleton section-skeleton" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="empty-state section-empty" aria-hidden="true"><span class="empty-glyph">▦</span><strong>Rubric metrics unavailable</strong><p>Connect at least one complete model summary to populate this view.</p></div>
+    </section>
+
+    <section class="section page-shell stateful" id="operators" aria-labelledby="operators-title">
+      <div class="section-heading">
+        <div><p class="section-index">04 / OPERATOR PROCESS</p><h2 id="operators-title">Where the agent spends effort</h2><p>Rows are models; columns keep one fixed operator order throughout the site.</p></div>
+        <label class="live-content">Metric
+          <select id="heat-metric"><option value="tokens_k">Token Consumption</option><option value="rounds">Optimization Rounds</option><option value="wall_time_s">Optimization Wall-Time</option><option value="profiling_runs">Profiling Runs</option></select>
+        </label>
+      </div>
+      <div class="component-surface heatmap-wrap live-content" id="process-heatmap"></div>
+      <div class="skeleton section-skeleton" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="empty-state section-empty" aria-hidden="true"><span class="empty-glyph">░</span><strong>No operator process traces</strong><p>Per-operator token, round or profiler values have not been reported.</p></div>
+    </section>
+
+    <section class="section page-shell stateful" id="gain" aria-labelledby="gain-title">
+      <div class="section-heading">
+        <div><p class="section-index">05 / PERFORMANCE GAIN</p><h2 id="gain-title">Operator-level speedup</h2><p>Zero is the baseline. Regressions extend left; speedups extend right.</p></div>
+        <label class="live-content">Model<select id="gain-model"></select></label>
+      </div>
+      <div class="split-grid live-content">
+        <div class="component-surface"><div class="surface-title-row"><div><h3>Gain-vector signal field</h3><p id="gain-model-caption"></p></div><span class="zero-key">0 = pulse origin</span></div><div id="gain-chart"></div></div>
+        <div class="component-surface"><div class="surface-title-row"><div><h3>Best model per operator</h3><p>Highest measured placeholder gain</p></div></div><div id="best-by-operator"></div></div>
+      </div>
+      <div class="skeleton section-skeleton" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="empty-state section-empty" aria-hidden="true"><span class="empty-glyph">±</span><strong>No baseline comparisons</strong><p>Performance gain needs both baseline and final task durations.</p></div>
+    </section>
+
+    <section class="section page-shell stateful" id="duration" aria-labelledby="duration-title">
+      <div class="section-heading">
+        <div><p class="section-index">06 / TASK DURATION</p><h2 id="duration-title">DType × chip performance surface</h2><p>Lower task duration is better. Color scales re-normalize per selected operator.</p></div>
+        <div class="control-row live-content"><label>Operator<select id="duration-operator"></select></label><label>Model<select id="duration-model"></select></label></div>
+      </div>
+      <div class="split-grid duration-grid live-content">
+        <div class="component-surface"><div class="surface-title-row"><div><h3>Task-duration timing rings</h3><p>Arc completion encodes relative speed · exact µs stays centered</p></div><div class="ramp-legend"><span>FAST</span><i></i><span>SLOW</span></div></div><div id="duration-matrix"></div></div>
+        <div class="component-surface"><div class="surface-title-row"><div><h3>Chip timing race tracks</h3><p>Endpoint position encodes each dtype duration</p></div><div class="segmented"><button type="button" class="is-active" data-duration-view="absolute">µs</button><button type="button" data-duration-view="normalized">Fastest = 1×</button></div></div><div id="duration-bars"></div></div>
+      </div>
+      <div class="skeleton section-skeleton" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="empty-state section-empty" aria-hidden="true"><span class="empty-glyph">µs</span><strong>No profiler duration matrix</strong><p>Select an operator with both chip and dtype coverage.</p></div>
+    </section>
+
+    <section class="section page-shell stateful" id="hardware" aria-labelledby="hardware-title">
+      <div class="section-heading">
+        <div><p class="section-index">07 / HARDWARE UTILIZATION</p><h2 id="hardware-title">Utilization fingerprint</h2><p>Diagnostic context, not a simple higher-is-better score.</p></div>
+        <label class="live-content">Operator<select id="util-operator"></select></label>
+      </div>
+      <aside class="context-note live-content"><strong>Read with bottleneck context.</strong> A memory-bound operator can be optimal with low AIC utilization; overlap is the only unambiguously ascending metric in this panel.</aside>
+      <div class="split-grid live-content">
+        <div class="component-surface"><div class="surface-title-row"><div><h3>AI Core signal fingerprint</h3><p>Five metric sectors · three concentric model frequencies</p></div></div><div id="radar-chart"></div></div>
+        <div class="component-surface"><div class="surface-title-row"><div><h3>Exact utilization unit lanes</h3><p>Colored beads retain exact AIC · AIV · L2 · HBM · overlap values</p></div></div><div id="util-bars"></div></div>
+      </div>
+      <div class="roofline-note live-content"><span class="optional-tag">OPTIONAL ROOFLINE</span><p>Omitted from the production mock: FLOP and byte-count fields are not present in the supplied schema, so arithmetic intensity and the roof distance cannot be calculated honestly.</p></div>
+      <div class="skeleton section-skeleton" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="empty-state section-empty" aria-hidden="true"><span class="empty-glyph">◇</span><strong>No hardware counters</strong><p>AIC, AIV, L2, HBM and overlap values are required.</p></div>
+    </section>
+
+    <section class="section page-shell stateful" id="methodology" aria-labelledby="method-title">
+      <div class="section-heading">
+        <div><p class="section-index">08 / METHODOLOGY</p><h2 id="method-title">How PerfBench works</h2><p>A transparent view of the optimization loop and scoring contract.</p></div>
+      </div>
+      <div class="method-grid live-content">
+        <ol class="loop-steps">
+          <li><span>01</span><div><strong>Write</strong><p>The model receives an operator specification and authors AscendC.</p></div></li>
+          <li><span>02</span><div><strong>Compile</strong><p>Compiler diagnostics return to the agent loop.</p></div></li>
+          <li><span>03</span><div><strong>Verify</strong><p>Functional and numerical tests gate profiling.</p></div></li>
+          <li><span>04</span><div><strong>Profile</strong><p>Real Ascend hardware reports task duration and unit counters.</p></div></li>
+          <li><span>05</span><div><strong>Optimize</strong><p>The agent edits until improvement stalls or the round budget ends.</p></div></li>
+        </ol>
+        <div class="method-copy">
+          <h3>PerfScore</h3>
+          <p>Weighted blend of correctness, performance gain and cost efficiency. The exact weighting remains a benchmark-owner decision and is intentionally not invented in this prototype.</p>
+          <dl><div><dt>Hardware</dt><dd>Ascend 910B · 910C</dd></div><div><dt>Operators</dt><dd>10 illustrative kernels</dd></div><div><dt>Contamination</dt><dd>Held-out specs · reproducible harness</dd></div><div><dt>Status</dt><dd>Illustrative data, not measured results</dd></div></dl>
+        </div>
+      </div>
+      <div class="skeleton section-skeleton" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="empty-state section-empty" aria-hidden="true"><span class="empty-glyph">i</span><strong>Methodology draft unavailable</strong><p>Scoring and contamination controls will appear when published.</p></div>
+    </section>
+  </main>
+
+  <footer class="site-footer stateful" id="source">
+    <div class="page-shell live-content">
+      <div class="footer-lockup"><img src="assets/logo/mark-monochrome.svg" alt="" width="54" height="54"><div><strong>AuraKernel PerfBench</strong><p>An open benchmark interface for AscendC operator-optimization agents.</p></div></div>
+      <div class="footer-grid">
+        <div><h2>Cite this benchmark</h2><pre id="bibtex"><code>@misc{aurakernel_perfbench_2026,
+  title  = {AuraKernel PerfBench},
+  author = {Jing Li},
+  year   = {2026},
+  note   = {Open interface for AscendC operator optimization benchmarks},
+  url    = {https://github.com/lolilukia/aurakernel-perfbench}
+}</code></pre><button class="secondary-button" id="copy-bibtex" type="button">Copy BibTeX</button></div>
+        <div class="footer-links"><h2>Resources</h2><a href="#methodology">Methodology ↗</a><a href="mock-data.json" id="dataset">Sample data ↗</a><a href="https://github.com/lolilukia/aurakernel-perfbench">Repository ↗</a><a href="https://github.com/lolilukia/aurakernel-perfbench#roadmap">Roadmap ↗</a></div>
+        <div class="footer-links"><h2>Project</h2><span>License · MIT</span><a href="https://github.com/lolilukia/aurakernel-perfbench/issues">Contact · GitHub Issues</a><span class="mono">Early-stage prototype v0.1</span></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 AuraKernel contributors</span><span>Illustrative data is labeled throughout.</span><a href="#top">Back to top ↑</a></div>
+    </div>
+    <div class="skeleton footer-skeleton" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="empty-state footer-empty" aria-hidden="true"><span class="empty-glyph">AK</span><strong>Project links pending</strong></div>
+  </footer>
+
+  <aside class="model-drawer" id="model-drawer" aria-hidden="true" aria-labelledby="drawer-title">
+    <button class="drawer-backdrop" id="drawer-backdrop" type="button" aria-label="Close model detail"></button>
+    <div class="drawer-panel" role="dialog" aria-modal="true">
+      <div class="drawer-header"><div id="drawer-identity"></div><button class="icon-button" id="drawer-close" type="button" aria-label="Close model detail">×</button></div>
+      <div class="drawer-scroll" id="drawer-content"></div>
+    </div>
+  </aside>
+
+  <div class="data-tooltip" id="data-tooltip" role="tooltip" aria-hidden="true"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

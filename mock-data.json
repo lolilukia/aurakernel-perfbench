@@ -1,0 +1,5237 @@
+{
+  "meta": {
+    "status": "illustrative",
+    "updated": "2026-07-26",
+    "note": "All model names and values are illustrative placeholders, not measured benchmark results.",
+    "models_evaluated": 7,
+    "operators": [
+      "MatMul",
+      "FlashAttention",
+      "RMSNorm",
+      "Softmax",
+      "RoPE",
+      "SwiGLU",
+      "LayerNorm",
+      "Transpose",
+      "GroupedMatMul",
+      "Add"
+    ],
+    "chips": [
+      "Ascend 910B",
+      "Ascend 910C"
+    ],
+    "dtypes": [
+      "fp16",
+      "bf16",
+      "fp32",
+      "int8"
+    ],
+    "device_hours": 0,
+    "metric_directions": {
+      "compile_pass": "up",
+      "e2e_pass": "up",
+      "perf_gain": "up",
+      "task_duration": "down",
+      "rounds": "down",
+      "wall_time": "down",
+      "tokens": "down",
+      "api_cost": "down",
+      "profiling_runs": "down",
+      "tool_call_acc": "up",
+      "aic": "context",
+      "aiv": "context",
+      "l2_bw": "context",
+      "hbm_bw": "context",
+      "overlap": "up"
+    }
+  },
+  "models": [
+    {
+      "id": "gpt-5-6-sol",
+      "name": "GPT-5.6 Sol",
+      "vendor": "OpenAI",
+      "vendor_mark": "OA",
+      "family": "GPT-5.6",
+      "weights": "closed",
+      "color": "#67E8D2",
+      "links": {
+        "model_card": "#",
+        "api": "#",
+        "report": "#"
+      },
+      "overall": {
+        "perf_score": 87.4,
+        "compile_pass": 96,
+        "e2e_pass": 91.2,
+        "perf_gain_median": 41.5,
+        "task_duration_median_us": 58.3,
+        "tokens_total_k": 812,
+        "api_cost_usd": 14.9,
+        "rounds_median": 6,
+        "wall_time_median_s": 210,
+        "profiling_runs_median": 5,
+        "tool_call_acc": 97.1
+      },
+      "per_operator": [
+        {
+          "operator": "MatMul",
+          "bound": "compute",
+          "compile_pass": 96,
+          "e2e_pass": 91.2,
+          "tokens_k": 92,
+          "rounds": 6,
+          "wall_time_s": 229,
+          "profiling_runs": 6,
+          "perf_gain": 48.8,
+          "best_task_duration_us": 53.4,
+          "tool_call_acc": 97.1,
+          "utilization": {
+            "aic": 82,
+            "aiv": 41,
+            "l2_bw": 61,
+            "hbm_bw": 49,
+            "overlap": 46
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 64.6,
+              "Ascend 910C": 53.4
+            },
+            "bf16": {
+              "Ascend 910B": 67.2,
+              "Ascend 910C": 55.5
+            },
+            "fp32": {
+              "Ascend 910B": 115,
+              "Ascend 910C": 95.1
+            },
+            "int8": {
+              "Ascend 910B": 43.3,
+              "Ascend 910C": 35.8
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 26
+            },
+            {
+              "round": 2,
+              "perf_gain": 36.2
+            },
+            {
+              "round": 3,
+              "perf_gain": 40.6
+            },
+            {
+              "round": 4,
+              "perf_gain": 43.9
+            },
+            {
+              "round": 5,
+              "perf_gain": 46.1
+            },
+            {
+              "round": 6,
+              "perf_gain": 48.8
+            }
+          ]
+        },
+        {
+          "operator": "FlashAttention",
+          "bound": "mixed",
+          "compile_pass": 95.8,
+          "e2e_pass": 90.9,
+          "tokens_k": 104,
+          "rounds": 7,
+          "wall_time_s": 243,
+          "profiling_runs": 7,
+          "perf_gain": 50.9,
+          "best_task_duration_us": 60.3,
+          "tool_call_acc": 96.6,
+          "utilization": {
+            "aic": 75,
+            "aiv": 65,
+            "l2_bw": 66,
+            "hbm_bw": 66,
+            "overlap": 60
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 73,
+              "Ascend 910C": 60.3
+            },
+            "bf16": {
+              "Ascend 910B": 75.9,
+              "Ascend 910C": 62.7
+            },
+            "fp32": {
+              "Ascend 910B": 129.9,
+              "Ascend 910C": 107.3
+            },
+            "int8": {
+              "Ascend 910B": 48.9,
+              "Ascend 910C": 40.4
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 29.1
+            },
+            {
+              "round": 2,
+              "perf_gain": 36.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 42.4
+            },
+            {
+              "round": 4,
+              "perf_gain": 46.2
+            },
+            {
+              "round": 5,
+              "perf_gain": 47.9
+            },
+            {
+              "round": 6,
+              "perf_gain": 49.1
+            },
+            {
+              "round": 7,
+              "perf_gain": 50.9
+            }
+          ]
+        },
+        {
+          "operator": "RMSNorm",
+          "bound": "memory",
+          "compile_pass": 95.6,
+          "e2e_pass": 90.6,
+          "tokens_k": 94,
+          "rounds": 7,
+          "wall_time_s": 207,
+          "profiling_runs": 5,
+          "perf_gain": 40.7,
+          "best_task_duration_us": 36.6,
+          "tool_call_acc": 96,
+          "utilization": {
+            "aic": 35,
+            "aiv": 53,
+            "l2_bw": 73,
+            "hbm_bw": 80,
+            "overlap": 34
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 44.3,
+              "Ascend 910C": 36.6
+            },
+            "bf16": {
+              "Ascend 910B": 46.1,
+              "Ascend 910C": 38.1
+            },
+            "fp32": {
+              "Ascend 910B": 78.8,
+              "Ascend 910C": 65.1
+            },
+            "int8": {
+              "Ascend 910B": 29.7,
+              "Ascend 910C": 24.5
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 20.1
+            },
+            {
+              "round": 2,
+              "perf_gain": 28.3
+            },
+            {
+              "round": 3,
+              "perf_gain": 33.9
+            },
+            {
+              "round": 4,
+              "perf_gain": 36.3
+            },
+            {
+              "round": 5,
+              "perf_gain": 38
+            },
+            {
+              "round": 6,
+              "perf_gain": 39.2
+            },
+            {
+              "round": 7,
+              "perf_gain": 40.7
+            }
+          ]
+        },
+        {
+          "operator": "Softmax",
+          "bound": "vector",
+          "compile_pass": 95.3,
+          "e2e_pass": 90.3,
+          "tokens_k": 87,
+          "rounds": 5,
+          "wall_time_s": 218,
+          "profiling_runs": 6,
+          "perf_gain": 40.6,
+          "best_task_duration_us": 41.7,
+          "tool_call_acc": 95.4,
+          "utilization": {
+            "aic": 24,
+            "aiv": 78,
+            "l2_bw": 62,
+            "hbm_bw": 57,
+            "overlap": 45
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 50.5,
+              "Ascend 910C": 41.7
+            },
+            "bf16": {
+              "Ascend 910B": 52.5,
+              "Ascend 910C": 43.4
+            },
+            "fp32": {
+              "Ascend 910B": 89.8,
+              "Ascend 910C": 74.2
+            },
+            "int8": {
+              "Ascend 910B": 33.8,
+              "Ascend 910C": 27.9
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 21.6
+            },
+            {
+              "round": 2,
+              "perf_gain": 30.1
+            },
+            {
+              "round": 3,
+              "perf_gain": 33.8
+            },
+            {
+              "round": 4,
+              "perf_gain": 36.5
+            },
+            {
+              "round": 5,
+              "perf_gain": 40.6
+            }
+          ]
+        },
+        {
+          "operator": "RoPE",
+          "bound": "vector",
+          "compile_pass": 95.1,
+          "e2e_pass": 90,
+          "tokens_k": 89,
+          "rounds": 6,
+          "wall_time_s": 209,
+          "profiling_runs": 5,
+          "perf_gain": 36.7,
+          "best_task_duration_us": 34.1,
+          "tool_call_acc": 97.1,
+          "utilization": {
+            "aic": 20,
+            "aiv": 77,
+            "l2_bw": 65,
+            "hbm_bw": 61,
+            "overlap": 46
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 41.3,
+              "Ascend 910C": 34.1
+            },
+            "bf16": {
+              "Ascend 910B": 42.9,
+              "Ascend 910C": 35.5
+            },
+            "fp32": {
+              "Ascend 910B": 73.4,
+              "Ascend 910C": 60.7
+            },
+            "int8": {
+              "Ascend 910B": 27.6,
+              "Ascend 910C": 22.8
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 21
+            },
+            {
+              "round": 2,
+              "perf_gain": 26.5
+            },
+            {
+              "round": 3,
+              "perf_gain": 30.6
+            },
+            {
+              "round": 4,
+              "perf_gain": 33.3
+            },
+            {
+              "round": 5,
+              "perf_gain": 34.5
+            },
+            {
+              "round": 6,
+              "perf_gain": 36.7
+            }
+          ]
+        },
+        {
+          "operator": "SwiGLU",
+          "bound": "mixed",
+          "compile_pass": 94.9,
+          "e2e_pass": 89.7,
+          "tokens_k": 88,
+          "rounds": 7,
+          "wall_time_s": 233,
+          "profiling_runs": 6,
+          "perf_gain": 41.5,
+          "best_task_duration_us": 47.7,
+          "tool_call_acc": 96.6,
+          "utilization": {
+            "aic": 68,
+            "aiv": 60,
+            "l2_bw": 68,
+            "hbm_bw": 73,
+            "overlap": 66
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 57.7,
+              "Ascend 910C": 47.7
+            },
+            "bf16": {
+              "Ascend 910B": 60,
+              "Ascend 910C": 49.6
+            },
+            "fp32": {
+              "Ascend 910B": 102.7,
+              "Ascend 910C": 84.9
+            },
+            "int8": {
+              "Ascend 910B": 38.7,
+              "Ascend 910C": 32
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 20.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 28.9
+            },
+            {
+              "round": 3,
+              "perf_gain": 34.6
+            },
+            {
+              "round": 4,
+              "perf_gain": 37
+            },
+            {
+              "round": 5,
+              "perf_gain": 38.8
+            },
+            {
+              "round": 6,
+              "perf_gain": 40
+            },
+            {
+              "round": 7,
+              "perf_gain": 41.5
+            }
+          ]
+        },
+        {
+          "operator": "LayerNorm",
+          "bound": "memory",
+          "compile_pass": 94.7,
+          "e2e_pass": 89.3,
+          "tokens_k": 90,
+          "rounds": 5,
+          "wall_time_s": 224,
+          "profiling_runs": 5,
+          "perf_gain": 40,
+          "best_task_duration_us": 39.8,
+          "tool_call_acc": 96,
+          "utilization": {
+            "aic": 30,
+            "aiv": 55,
+            "l2_bw": 80,
+            "hbm_bw": 86,
+            "overlap": 33
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 48.2,
+              "Ascend 910C": 39.8
+            },
+            "bf16": {
+              "Ascend 910B": 50.1,
+              "Ascend 910C": 41.4
+            },
+            "fp32": {
+              "Ascend 910B": 85.7,
+              "Ascend 910C": 70.8
+            },
+            "int8": {
+              "Ascend 910B": 32.3,
+              "Ascend 910C": 26.7
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 21.3
+            },
+            {
+              "round": 2,
+              "perf_gain": 29.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 33.3
+            },
+            {
+              "round": 4,
+              "perf_gain": 36
+            },
+            {
+              "round": 5,
+              "perf_gain": 40
+            }
+          ]
+        },
+        {
+          "operator": "Transpose",
+          "bound": "memory",
+          "compile_pass": 94.5,
+          "e2e_pass": 89,
+          "tokens_k": 90,
+          "rounds": 5,
+          "wall_time_s": 212,
+          "profiling_runs": 6,
+          "perf_gain": 38.5,
+          "best_task_duration_us": 29.7,
+          "tool_call_acc": 95.4,
+          "utilization": {
+            "aic": 34,
+            "aiv": 56,
+            "l2_bw": 78,
+            "hbm_bw": 82,
+            "overlap": 31
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 35.9,
+              "Ascend 910C": 29.7
+            },
+            "bf16": {
+              "Ascend 910B": 37.4,
+              "Ascend 910C": 30.9
+            },
+            "fp32": {
+              "Ascend 910B": 64,
+              "Ascend 910C": 52.9
+            },
+            "int8": {
+              "Ascend 910B": 24.1,
+              "Ascend 910C": 19.9
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 22
+            },
+            {
+              "round": 2,
+              "perf_gain": 27.8
+            },
+            {
+              "round": 3,
+              "perf_gain": 32.1
+            },
+            {
+              "round": 4,
+              "perf_gain": 35
+            },
+            {
+              "round": 5,
+              "perf_gain": 38.5
+            }
+          ]
+        },
+        {
+          "operator": "GroupedMatMul",
+          "bound": "compute",
+          "compile_pass": 94.2,
+          "e2e_pass": 88.7,
+          "tokens_k": 106,
+          "rounds": 8,
+          "wall_time_s": 272,
+          "profiling_runs": 6,
+          "perf_gain": 52.9,
+          "best_task_duration_us": 65.2,
+          "tool_call_acc": 97.1,
+          "utilization": {
+            "aic": 86,
+            "aiv": 40,
+            "l2_bw": 55,
+            "hbm_bw": 44,
+            "overlap": 47
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 78.9,
+              "Ascend 910C": 65.2
+            },
+            "bf16": {
+              "Ascend 910B": 82,
+              "Ascend 910C": 67.8
+            },
+            "fp32": {
+              "Ascend 910B": 140.4,
+              "Ascend 910C": 116.1
+            },
+            "int8": {
+              "Ascend 910B": 52.9,
+              "Ascend 910C": 43.7
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 26.1
+            },
+            {
+              "round": 2,
+              "perf_gain": 36.8
+            },
+            {
+              "round": 3,
+              "perf_gain": 44
+            },
+            {
+              "round": 4,
+              "perf_gain": 47.1
+            },
+            {
+              "round": 5,
+              "perf_gain": 49.4
+            },
+            {
+              "round": 6,
+              "perf_gain": 51
+            },
+            {
+              "round": 7,
+              "perf_gain": 51.7
+            },
+            {
+              "round": 8,
+              "perf_gain": 52.9
+            }
+          ]
+        },
+        {
+          "operator": "Add",
+          "bound": "memory",
+          "compile_pass": 94,
+          "e2e_pass": 88.4,
+          "tokens_k": 82,
+          "rounds": 4,
+          "wall_time_s": 207,
+          "profiling_runs": 5,
+          "perf_gain": 37.9,
+          "best_task_duration_us": 22.6,
+          "tool_call_acc": 96.6,
+          "utilization": {
+            "aic": 33,
+            "aiv": 50,
+            "l2_bw": 72,
+            "hbm_bw": 82,
+            "overlap": 37
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 27.3,
+              "Ascend 910C": 22.6
+            },
+            "bf16": {
+              "Ascend 910B": 28.4,
+              "Ascend 910C": 23.5
+            },
+            "fp32": {
+              "Ascend 910B": 48.7,
+              "Ascend 910C": 40.2
+            },
+            "int8": {
+              "Ascend 910B": 18.3,
+              "Ascend 910C": 15.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 20.2
+            },
+            {
+              "round": 2,
+              "perf_gain": 28.1
+            },
+            {
+              "round": 3,
+              "perf_gain": 31.6
+            },
+            {
+              "round": 4,
+              "perf_gain": 37.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "claude-opus-4-8",
+      "name": "Claude Opus 4.8",
+      "vendor": "Anthropic",
+      "vendor_mark": "A",
+      "family": "Claude",
+      "weights": "closed",
+      "color": "#FFB86C",
+      "links": {
+        "model_card": "#",
+        "api": "#",
+        "report": "#"
+      },
+      "overall": {
+        "perf_score": 85.9,
+        "compile_pass": 95.1,
+        "e2e_pass": 90.5,
+        "perf_gain_median": 39.8,
+        "task_duration_median_us": 60.1,
+        "tokens_total_k": 690,
+        "api_cost_usd": 11.2,
+        "rounds_median": 6,
+        "wall_time_median_s": 218,
+        "profiling_runs_median": 5,
+        "tool_call_acc": 96.4
+      },
+      "per_operator": [
+        {
+          "operator": "MatMul",
+          "bound": "compute",
+          "compile_pass": 95,
+          "e2e_pass": 90.4,
+          "tokens_k": 89,
+          "rounds": 7,
+          "wall_time_s": 237,
+          "profiling_runs": 7,
+          "perf_gain": 44.2,
+          "best_task_duration_us": 55.9,
+          "tool_call_acc": 96.4,
+          "utilization": {
+            "aic": 84,
+            "aiv": 40,
+            "l2_bw": 56,
+            "hbm_bw": 43,
+            "overlap": 43
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 67.6,
+              "Ascend 910C": 55.9
+            },
+            "bf16": {
+              "Ascend 910B": 70.3,
+              "Ascend 910C": 58.1
+            },
+            "fp32": {
+              "Ascend 910B": 120.4,
+              "Ascend 910C": 99.5
+            },
+            "int8": {
+              "Ascend 910B": 45.3,
+              "Ascend 910C": 37.5
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 23.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 32.8
+            },
+            {
+              "round": 3,
+              "perf_gain": 36.8
+            },
+            {
+              "round": 4,
+              "perf_gain": 39.8
+            },
+            {
+              "round": 5,
+              "perf_gain": 41.8
+            },
+            {
+              "round": 6,
+              "perf_gain": 42.6
+            },
+            {
+              "round": 7,
+              "perf_gain": 44.2
+            }
+          ]
+        },
+        {
+          "operator": "FlashAttention",
+          "bound": "mixed",
+          "compile_pass": 94.8,
+          "e2e_pass": 90.1,
+          "tokens_k": 84,
+          "rounds": 8,
+          "wall_time_s": 252,
+          "profiling_runs": 6,
+          "perf_gain": 43.5,
+          "best_task_duration_us": 63.9,
+          "tool_call_acc": 95.9,
+          "utilization": {
+            "aic": 74,
+            "aiv": 60,
+            "l2_bw": 60,
+            "hbm_bw": 63,
+            "overlap": 61
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 77.3,
+              "Ascend 910C": 63.9
+            },
+            "bf16": {
+              "Ascend 910B": 80.4,
+              "Ascend 910C": 66.5
+            },
+            "fp32": {
+              "Ascend 910B": 137.6,
+              "Ascend 910C": 113.7
+            },
+            "int8": {
+              "Ascend 910B": 51.8,
+              "Ascend 910C": 42.8
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 24.8
+            },
+            {
+              "round": 2,
+              "perf_gain": 31.4
+            },
+            {
+              "round": 3,
+              "perf_gain": 36.2
+            },
+            {
+              "round": 4,
+              "perf_gain": 39.5
+            },
+            {
+              "round": 5,
+              "perf_gain": 40.9
+            },
+            {
+              "round": 6,
+              "perf_gain": 41.9
+            },
+            {
+              "round": 7,
+              "perf_gain": 42.6
+            },
+            {
+              "round": 8,
+              "perf_gain": 43.5
+            }
+          ]
+        },
+        {
+          "operator": "RMSNorm",
+          "bound": "memory",
+          "compile_pass": 94.6,
+          "e2e_pass": 89.8,
+          "tokens_k": 76,
+          "rounds": 5,
+          "wall_time_s": 215,
+          "profiling_runs": 6,
+          "perf_gain": 36.7,
+          "best_task_duration_us": 38.3,
+          "tool_call_acc": 95.3,
+          "utilization": {
+            "aic": 30,
+            "aiv": 47,
+            "l2_bw": 70,
+            "hbm_bw": 81,
+            "overlap": 36
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 46.3,
+              "Ascend 910C": 38.3
+            },
+            "bf16": {
+              "Ascend 910B": 48.2,
+              "Ascend 910C": 39.8
+            },
+            "fp32": {
+              "Ascend 910B": 82.5,
+              "Ascend 910C": 68.2
+            },
+            "int8": {
+              "Ascend 910B": 31,
+              "Ascend 910C": 25.7
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 18.1
+            },
+            {
+              "round": 2,
+              "perf_gain": 25.5
+            },
+            {
+              "round": 3,
+              "perf_gain": 30.6
+            },
+            {
+              "round": 4,
+              "perf_gain": 32.7
+            },
+            {
+              "round": 5,
+              "perf_gain": 36.7
+            }
+          ]
+        },
+        {
+          "operator": "Softmax",
+          "bound": "vector",
+          "compile_pass": 94.4,
+          "e2e_pass": 89.5,
+          "tokens_k": 86,
+          "rounds": 6,
+          "wall_time_s": 226,
+          "profiling_runs": 5,
+          "perf_gain": 41.6,
+          "best_task_duration_us": 42.9,
+          "tool_call_acc": 94.8,
+          "utilization": {
+            "aic": 18,
+            "aiv": 75,
+            "l2_bw": 63,
+            "hbm_bw": 59,
+            "overlap": 44
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 51.9,
+              "Ascend 910C": 42.9
+            },
+            "bf16": {
+              "Ascend 910B": 54,
+              "Ascend 910C": 44.6
+            },
+            "fp32": {
+              "Ascend 910B": 92.4,
+              "Ascend 910C": 76.4
+            },
+            "int8": {
+              "Ascend 910B": 34.8,
+              "Ascend 910C": 28.7
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 22.1
+            },
+            {
+              "round": 2,
+              "perf_gain": 30.9
+            },
+            {
+              "round": 3,
+              "perf_gain": 34.6
+            },
+            {
+              "round": 4,
+              "perf_gain": 37.4
+            },
+            {
+              "round": 5,
+              "perf_gain": 39.3
+            },
+            {
+              "round": 6,
+              "perf_gain": 41.6
+            }
+          ]
+        },
+        {
+          "operator": "RoPE",
+          "bound": "vector",
+          "compile_pass": 94.1,
+          "e2e_pass": 89.2,
+          "tokens_k": 71,
+          "rounds": 7,
+          "wall_time_s": 216,
+          "profiling_runs": 6,
+          "perf_gain": 38.4,
+          "best_task_duration_us": 34.9,
+          "tool_call_acc": 96.4,
+          "utilization": {
+            "aic": 17,
+            "aiv": 78,
+            "l2_bw": 67,
+            "hbm_bw": 60,
+            "overlap": 42
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 42.2,
+              "Ascend 910C": 34.9
+            },
+            "bf16": {
+              "Ascend 910B": 43.9,
+              "Ascend 910C": 36.3
+            },
+            "fp32": {
+              "Ascend 910B": 75.2,
+              "Ascend 910C": 62.1
+            },
+            "int8": {
+              "Ascend 910B": 28.3,
+              "Ascend 910C": 23.4
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 21.9
+            },
+            {
+              "round": 2,
+              "perf_gain": 27.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 32
+            },
+            {
+              "round": 4,
+              "perf_gain": 34.9
+            },
+            {
+              "round": 5,
+              "perf_gain": 36.1
+            },
+            {
+              "round": 6,
+              "perf_gain": 37
+            },
+            {
+              "round": 7,
+              "perf_gain": 38.4
+            }
+          ]
+        },
+        {
+          "operator": "SwiGLU",
+          "bound": "mixed",
+          "compile_pass": 93.9,
+          "e2e_pass": 88.9,
+          "tokens_k": 86,
+          "rounds": 5,
+          "wall_time_s": 241,
+          "profiling_runs": 5,
+          "perf_gain": 39.5,
+          "best_task_duration_us": 49.5,
+          "tool_call_acc": 95.9,
+          "utilization": {
+            "aic": 69,
+            "aiv": 62,
+            "l2_bw": 67,
+            "hbm_bw": 69,
+            "overlap": 60
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 59.9,
+              "Ascend 910C": 49.5
+            },
+            "bf16": {
+              "Ascend 910B": 62.3,
+              "Ascend 910C": 51.5
+            },
+            "fp32": {
+              "Ascend 910B": 106.6,
+              "Ascend 910C": 88.1
+            },
+            "int8": {
+              "Ascend 910B": 40.1,
+              "Ascend 910C": 33.2
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 19.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 27.5
+            },
+            {
+              "round": 3,
+              "perf_gain": 32.9
+            },
+            {
+              "round": 4,
+              "perf_gain": 35.2
+            },
+            {
+              "round": 5,
+              "perf_gain": 39.5
+            }
+          ]
+        },
+        {
+          "operator": "LayerNorm",
+          "bound": "memory",
+          "compile_pass": 93.7,
+          "e2e_pass": 88.5,
+          "tokens_k": 72,
+          "rounds": 6,
+          "wall_time_s": 232,
+          "profiling_runs": 6,
+          "perf_gain": 36.7,
+          "best_task_duration_us": 41.5,
+          "tool_call_acc": 95.3,
+          "utilization": {
+            "aic": 32,
+            "aiv": 54,
+            "l2_bw": 76,
+            "hbm_bw": 80,
+            "overlap": 29
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 50.2,
+              "Ascend 910C": 41.5
+            },
+            "bf16": {
+              "Ascend 910B": 52.2,
+              "Ascend 910C": 43.2
+            },
+            "fp32": {
+              "Ascend 910B": 89.4,
+              "Ascend 910C": 73.9
+            },
+            "int8": {
+              "Ascend 910B": 33.6,
+              "Ascend 910C": 27.8
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 19.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 27.3
+            },
+            {
+              "round": 3,
+              "perf_gain": 30.6
+            },
+            {
+              "round": 4,
+              "perf_gain": 33
+            },
+            {
+              "round": 5,
+              "perf_gain": 34.7
+            },
+            {
+              "round": 6,
+              "perf_gain": 36.7
+            }
+          ]
+        },
+        {
+          "operator": "Transpose",
+          "bound": "memory",
+          "compile_pass": 93.5,
+          "e2e_pass": 88.2,
+          "tokens_k": 73,
+          "rounds": 6,
+          "wall_time_s": 219,
+          "profiling_runs": 5,
+          "perf_gain": 36.9,
+          "best_task_duration_us": 30.8,
+          "tool_call_acc": 94.8,
+          "utilization": {
+            "aic": 33,
+            "aiv": 52,
+            "l2_bw": 72,
+            "hbm_bw": 78,
+            "overlap": 31
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 37.3,
+              "Ascend 910C": 30.8
+            },
+            "bf16": {
+              "Ascend 910B": 38.8,
+              "Ascend 910C": 32
+            },
+            "fp32": {
+              "Ascend 910B": 66.3,
+              "Ascend 910C": 54.8
+            },
+            "int8": {
+              "Ascend 910B": 25,
+              "Ascend 910C": 20.6
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 21.1
+            },
+            {
+              "round": 2,
+              "perf_gain": 26.6
+            },
+            {
+              "round": 3,
+              "perf_gain": 30.7
+            },
+            {
+              "round": 4,
+              "perf_gain": 33.5
+            },
+            {
+              "round": 5,
+              "perf_gain": 34.7
+            },
+            {
+              "round": 6,
+              "perf_gain": 36.9
+            }
+          ]
+        },
+        {
+          "operator": "GroupedMatMul",
+          "bound": "compute",
+          "compile_pass": 93.3,
+          "e2e_pass": 87.9,
+          "tokens_k": 102,
+          "rounds": 6,
+          "wall_time_s": 282,
+          "profiling_runs": 7,
+          "perf_gain": 50.1,
+          "best_task_duration_us": 67.9,
+          "tool_call_acc": 96.4,
+          "utilization": {
+            "aic": 82,
+            "aiv": 34,
+            "l2_bw": 51,
+            "hbm_bw": 44,
+            "overlap": 49
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 82.2,
+              "Ascend 910C": 67.9
+            },
+            "bf16": {
+              "Ascend 910B": 85.4,
+              "Ascend 910C": 70.6
+            },
+            "fp32": {
+              "Ascend 910B": 146.2,
+              "Ascend 910C": 120.9
+            },
+            "int8": {
+              "Ascend 910B": 55,
+              "Ascend 910C": 45.5
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 24.7
+            },
+            {
+              "round": 2,
+              "perf_gain": 34.9
+            },
+            {
+              "round": 3,
+              "perf_gain": 41.7
+            },
+            {
+              "round": 4,
+              "perf_gain": 44.7
+            },
+            {
+              "round": 5,
+              "perf_gain": 46.8
+            },
+            {
+              "round": 6,
+              "perf_gain": 50.1
+            }
+          ]
+        },
+        {
+          "operator": "Add",
+          "bound": "memory",
+          "compile_pass": 93,
+          "e2e_pass": 87.6,
+          "tokens_k": 66,
+          "rounds": 5,
+          "wall_time_s": 214,
+          "profiling_runs": 4,
+          "perf_gain": 32.4,
+          "best_task_duration_us": 23.8,
+          "tool_call_acc": 95.9,
+          "utilization": {
+            "aic": 27,
+            "aiv": 46,
+            "l2_bw": 72,
+            "hbm_bw": 84,
+            "overlap": 37
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 28.8,
+              "Ascend 910C": 23.8
+            },
+            "bf16": {
+              "Ascend 910B": 29.9,
+              "Ascend 910C": 24.8
+            },
+            "fp32": {
+              "Ascend 910B": 51.3,
+              "Ascend 910C": 42.4
+            },
+            "int8": {
+              "Ascend 910B": 19.3,
+              "Ascend 910C": 15.9
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 17.2
+            },
+            {
+              "round": 2,
+              "perf_gain": 24.1
+            },
+            {
+              "round": 3,
+              "perf_gain": 27
+            },
+            {
+              "round": 4,
+              "perf_gain": 29.1
+            },
+            {
+              "round": 5,
+              "perf_gain": 32.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gemini-3-1-pro",
+      "name": "Gemini 3.1 Pro",
+      "vendor": "Google",
+      "vendor_mark": "G",
+      "family": "Gemini",
+      "weights": "closed",
+      "color": "#6CBFFF",
+      "links": {
+        "model_card": "#",
+        "api": "#",
+        "report": "#"
+      },
+      "overall": {
+        "perf_score": 83.2,
+        "compile_pass": 93.4,
+        "e2e_pass": 88.7,
+        "perf_gain_median": 37,
+        "task_duration_median_us": 63.4,
+        "tokens_total_k": 940,
+        "api_cost_usd": 9.8,
+        "rounds_median": 7,
+        "wall_time_median_s": 242,
+        "profiling_runs_median": 6,
+        "tool_call_acc": 95
+      },
+      "per_operator": [
+        {
+          "operator": "MatMul",
+          "bound": "compute",
+          "compile_pass": 93.2,
+          "e2e_pass": 88.5,
+          "tokens_k": 112,
+          "rounds": 9,
+          "wall_time_s": 263,
+          "profiling_runs": 7,
+          "perf_gain": 37.4,
+          "best_task_duration_us": 60.5,
+          "tool_call_acc": 95,
+          "utilization": {
+            "aic": 82,
+            "aiv": 35,
+            "l2_bw": 50,
+            "hbm_bw": 41,
+            "overlap": 44
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 73.2,
+              "Ascend 910C": 60.5
+            },
+            "bf16": {
+              "Ascend 910B": 76.1,
+              "Ascend 910C": 62.9
+            },
+            "fp32": {
+              "Ascend 910B": 130.3,
+              "Ascend 910C": 107.7
+            },
+            "int8": {
+              "Ascend 910B": 49,
+              "Ascend 910C": 40.5
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 19.9
+            },
+            {
+              "round": 2,
+              "perf_gain": 27.8
+            },
+            {
+              "round": 3,
+              "perf_gain": 31.1
+            },
+            {
+              "round": 4,
+              "perf_gain": 33.6
+            },
+            {
+              "round": 5,
+              "perf_gain": 35.3
+            },
+            {
+              "round": 6,
+              "perf_gain": 36.1
+            },
+            {
+              "round": 7,
+              "perf_gain": 36.6
+            },
+            {
+              "round": 8,
+              "perf_gain": 37
+            },
+            {
+              "round": 9,
+              "perf_gain": 37.4
+            }
+          ]
+        },
+        {
+          "operator": "FlashAttention",
+          "bound": "mixed",
+          "compile_pass": 93,
+          "e2e_pass": 88.2,
+          "tokens_k": 124,
+          "rounds": 7,
+          "wall_time_s": 280,
+          "profiling_runs": 8,
+          "perf_gain": 42.8,
+          "best_task_duration_us": 67.6,
+          "tool_call_acc": 94.5,
+          "utilization": {
+            "aic": 69,
+            "aiv": 54,
+            "l2_bw": 58,
+            "hbm_bw": 64,
+            "overlap": 63
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 81.8,
+              "Ascend 910C": 67.6
+            },
+            "bf16": {
+              "Ascend 910B": 85.1,
+              "Ascend 910C": 70.3
+            },
+            "fp32": {
+              "Ascend 910B": 145.6,
+              "Ascend 910C": 120.3
+            },
+            "int8": {
+              "Ascend 910B": 54.8,
+              "Ascend 910C": 45.3
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 24.4
+            },
+            {
+              "round": 2,
+              "perf_gain": 30.9
+            },
+            {
+              "round": 3,
+              "perf_gain": 35.6
+            },
+            {
+              "round": 4,
+              "perf_gain": 38.9
+            },
+            {
+              "round": 5,
+              "perf_gain": 40.2
+            },
+            {
+              "round": 6,
+              "perf_gain": 41.3
+            },
+            {
+              "round": 7,
+              "perf_gain": 42.8
+            }
+          ]
+        },
+        {
+          "operator": "RMSNorm",
+          "bound": "memory",
+          "compile_pass": 92.8,
+          "e2e_pass": 87.9,
+          "tokens_k": 94,
+          "rounds": 7,
+          "wall_time_s": 238,
+          "profiling_runs": 6,
+          "perf_gain": 35.9,
+          "best_task_duration_us": 40.5,
+          "tool_call_acc": 93.9,
+          "utilization": {
+            "aic": 24,
+            "aiv": 45,
+            "l2_bw": 71,
+            "hbm_bw": 83,
+            "overlap": 35
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 49,
+              "Ascend 910C": 40.5
+            },
+            "bf16": {
+              "Ascend 910B": 51,
+              "Ascend 910C": 42.1
+            },
+            "fp32": {
+              "Ascend 910B": 87.2,
+              "Ascend 910C": 72.1
+            },
+            "int8": {
+              "Ascend 910B": 32.8,
+              "Ascend 910C": 27.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 17.7
+            },
+            {
+              "round": 2,
+              "perf_gain": 25
+            },
+            {
+              "round": 3,
+              "perf_gain": 29.9
+            },
+            {
+              "round": 4,
+              "perf_gain": 32
+            },
+            {
+              "round": 5,
+              "perf_gain": 33.6
+            },
+            {
+              "round": 6,
+              "perf_gain": 34.6
+            },
+            {
+              "round": 7,
+              "perf_gain": 35.9
+            }
+          ]
+        },
+        {
+          "operator": "Softmax",
+          "bound": "vector",
+          "compile_pass": 92.6,
+          "e2e_pass": 87.6,
+          "tokens_k": 105,
+          "rounds": 8,
+          "wall_time_s": 250,
+          "profiling_runs": 7,
+          "perf_gain": 33.3,
+          "best_task_duration_us": 46.6,
+          "tool_call_acc": 93.4,
+          "utilization": {
+            "aic": 16,
+            "aiv": 76,
+            "l2_bw": 65,
+            "hbm_bw": 58,
+            "overlap": 40
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 56.4,
+              "Ascend 910C": 46.6
+            },
+            "bf16": {
+              "Ascend 910B": 58.6,
+              "Ascend 910C": 48.5
+            },
+            "fp32": {
+              "Ascend 910B": 100.4,
+              "Ascend 910C": 82.9
+            },
+            "int8": {
+              "Ascend 910B": 37.8,
+              "Ascend 910C": 31.2
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 17.7
+            },
+            {
+              "round": 2,
+              "perf_gain": 24.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 27.7
+            },
+            {
+              "round": 4,
+              "perf_gain": 30
+            },
+            {
+              "round": 5,
+              "perf_gain": 31.5
+            },
+            {
+              "round": 6,
+              "perf_gain": 32.1
+            },
+            {
+              "round": 7,
+              "perf_gain": 32.6
+            },
+            {
+              "round": 8,
+              "perf_gain": 33.3
+            }
+          ]
+        },
+        {
+          "operator": "RoPE",
+          "bound": "vector",
+          "compile_pass": 92.4,
+          "e2e_pass": 87.3,
+          "tokens_k": 106,
+          "rounds": 6,
+          "wall_time_s": 239,
+          "profiling_runs": 6,
+          "perf_gain": 34.8,
+          "best_task_duration_us": 37.3,
+          "tool_call_acc": 95,
+          "utilization": {
+            "aic": 18,
+            "aiv": 80,
+            "l2_bw": 66,
+            "hbm_bw": 56,
+            "overlap": 36
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 45.1,
+              "Ascend 910C": 37.3
+            },
+            "bf16": {
+              "Ascend 910B": 46.9,
+              "Ascend 910C": 38.8
+            },
+            "fp32": {
+              "Ascend 910B": 80.3,
+              "Ascend 910C": 66.4
+            },
+            "int8": {
+              "Ascend 910B": 30.2,
+              "Ascend 910C": 25
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 19.9
+            },
+            {
+              "round": 2,
+              "perf_gain": 25.1
+            },
+            {
+              "round": 3,
+              "perf_gain": 29
+            },
+            {
+              "round": 4,
+              "perf_gain": 31.6
+            },
+            {
+              "round": 5,
+              "perf_gain": 32.7
+            },
+            {
+              "round": 6,
+              "perf_gain": 34.8
+            }
+          ]
+        },
+        {
+          "operator": "SwiGLU",
+          "bound": "mixed",
+          "compile_pass": 92.1,
+          "e2e_pass": 87,
+          "tokens_k": 107,
+          "rounds": 7,
+          "wall_time_s": 266,
+          "profiling_runs": 7,
+          "perf_gain": 38.6,
+          "best_task_duration_us": 52.4,
+          "tool_call_acc": 94.5,
+          "utilization": {
+            "aic": 71,
+            "aiv": 61,
+            "l2_bw": 63,
+            "hbm_bw": 63,
+            "overlap": 56
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 63.4,
+              "Ascend 910C": 52.4
+            },
+            "bf16": {
+              "Ascend 910B": 65.9,
+              "Ascend 910C": 54.5
+            },
+            "fp32": {
+              "Ascend 910B": 112.9,
+              "Ascend 910C": 93.3
+            },
+            "int8": {
+              "Ascend 910B": 42.5,
+              "Ascend 910C": 35.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 19
+            },
+            {
+              "round": 2,
+              "perf_gain": 26.9
+            },
+            {
+              "round": 3,
+              "perf_gain": 32.1
+            },
+            {
+              "round": 4,
+              "perf_gain": 34.4
+            },
+            {
+              "round": 5,
+              "perf_gain": 36.1
+            },
+            {
+              "round": 6,
+              "perf_gain": 37.2
+            },
+            {
+              "round": 7,
+              "perf_gain": 38.6
+            }
+          ]
+        },
+        {
+          "operator": "LayerNorm",
+          "bound": "memory",
+          "compile_pass": 91.9,
+          "e2e_pass": 86.6,
+          "tokens_k": 108,
+          "rounds": 8,
+          "wall_time_s": 255,
+          "profiling_runs": 6,
+          "perf_gain": 32.7,
+          "best_task_duration_us": 44.4,
+          "tool_call_acc": 93.9,
+          "utilization": {
+            "aic": 31,
+            "aiv": 50,
+            "l2_bw": 70,
+            "hbm_bw": 76,
+            "overlap": 29
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 53.7,
+              "Ascend 910C": 44.4
+            },
+            "bf16": {
+              "Ascend 910B": 55.9,
+              "Ascend 910C": 46.2
+            },
+            "fp32": {
+              "Ascend 910B": 95.6,
+              "Ascend 910C": 79
+            },
+            "int8": {
+              "Ascend 910B": 36,
+              "Ascend 910C": 29.7
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 17.4
+            },
+            {
+              "round": 2,
+              "perf_gain": 24.3
+            },
+            {
+              "round": 3,
+              "perf_gain": 27.2
+            },
+            {
+              "round": 4,
+              "perf_gain": 29.4
+            },
+            {
+              "round": 5,
+              "perf_gain": 30.9
+            },
+            {
+              "round": 6,
+              "perf_gain": 31.5
+            },
+            {
+              "round": 7,
+              "perf_gain": 32
+            },
+            {
+              "round": 8,
+              "perf_gain": 32.7
+            }
+          ]
+        },
+        {
+          "operator": "Transpose",
+          "bound": "memory",
+          "compile_pass": 91.7,
+          "e2e_pass": 86.3,
+          "tokens_k": 90,
+          "rounds": 5,
+          "wall_time_s": 241,
+          "profiling_runs": 7,
+          "perf_gain": 34.2,
+          "best_task_duration_us": 32.8,
+          "tool_call_acc": 93.4,
+          "utilization": {
+            "aic": 29,
+            "aiv": 46,
+            "l2_bw": 68,
+            "hbm_bw": 78,
+            "overlap": 33
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 39.7,
+              "Ascend 910C": 32.8
+            },
+            "bf16": {
+              "Ascend 910B": 41.3,
+              "Ascend 910C": 34.1
+            },
+            "fp32": {
+              "Ascend 910B": 70.6,
+              "Ascend 910C": 58.4
+            },
+            "int8": {
+              "Ascend 910B": 26.6,
+              "Ascend 910C": 22
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 19.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 24.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 28.5
+            },
+            {
+              "round": 4,
+              "perf_gain": 31.1
+            },
+            {
+              "round": 5,
+              "perf_gain": 34.2
+            }
+          ]
+        },
+        {
+          "operator": "GroupedMatMul",
+          "bound": "compute",
+          "compile_pass": 91.5,
+          "e2e_pass": 86,
+          "tokens_k": 127,
+          "rounds": 8,
+          "wall_time_s": 310,
+          "profiling_runs": 7,
+          "perf_gain": 44,
+          "best_task_duration_us": 73.3,
+          "tool_call_acc": 95,
+          "utilization": {
+            "aic": 76,
+            "aiv": 30,
+            "l2_bw": 51,
+            "hbm_bw": 46,
+            "overlap": 49
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 88.7,
+              "Ascend 910C": 73.3
+            },
+            "bf16": {
+              "Ascend 910B": 92.2,
+              "Ascend 910C": 76.2
+            },
+            "fp32": {
+              "Ascend 910B": 157.9,
+              "Ascend 910C": 130.5
+            },
+            "int8": {
+              "Ascend 910B": 59.4,
+              "Ascend 910C": 49.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 21.7
+            },
+            {
+              "round": 2,
+              "perf_gain": 30.6
+            },
+            {
+              "round": 3,
+              "perf_gain": 36.6
+            },
+            {
+              "round": 4,
+              "perf_gain": 39.2
+            },
+            {
+              "round": 5,
+              "perf_gain": 41.1
+            },
+            {
+              "round": 6,
+              "perf_gain": 42.4
+            },
+            {
+              "round": 7,
+              "perf_gain": 43
+            },
+            {
+              "round": 8,
+              "perf_gain": 44
+            }
+          ]
+        },
+        {
+          "operator": "Add",
+          "bound": "memory",
+          "compile_pass": 91.3,
+          "e2e_pass": 85.7,
+          "tokens_k": 81,
+          "rounds": 7,
+          "wall_time_s": 235,
+          "profiling_runs": 6,
+          "perf_gain": 27.8,
+          "best_task_duration_us": 25.5,
+          "tool_call_acc": 94.5,
+          "utilization": {
+            "aic": 23,
+            "aiv": 46,
+            "l2_bw": 74,
+            "hbm_bw": 84,
+            "overlap": 34
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 30.9,
+              "Ascend 910C": 25.5
+            },
+            "bf16": {
+              "Ascend 910B": 32.1,
+              "Ascend 910C": 26.5
+            },
+            "fp32": {
+              "Ascend 910B": 54.9,
+              "Ascend 910C": 45.4
+            },
+            "int8": {
+              "Ascend 910B": 20.7,
+              "Ascend 910C": 17.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 14.8
+            },
+            {
+              "round": 2,
+              "perf_gain": 20.6
+            },
+            {
+              "round": 3,
+              "perf_gain": 23.1
+            },
+            {
+              "round": 4,
+              "perf_gain": 25
+            },
+            {
+              "round": 5,
+              "perf_gain": 26.3
+            },
+            {
+              "round": 6,
+              "perf_gain": 26.8
+            },
+            {
+              "round": 7,
+              "perf_gain": 27.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "name": "DeepSeek V4-Pro",
+      "vendor": "DeepSeek",
+      "vendor_mark": "DS",
+      "family": "DeepSeek",
+      "weights": "open",
+      "color": "#CBA6FF",
+      "links": {
+        "model_card": "#",
+        "api": "#",
+        "report": "#"
+      },
+      "overall": {
+        "perf_score": 80.6,
+        "compile_pass": 91.2,
+        "e2e_pass": 86,
+        "perf_gain_median": 34.2,
+        "task_duration_median_us": 66.9,
+        "tokens_total_k": 1180,
+        "api_cost_usd": 4.3,
+        "rounds_median": 8,
+        "wall_time_median_s": 266,
+        "profiling_runs_median": 7,
+        "tool_call_acc": 93.8
+      },
+      "per_operator": [
+        {
+          "operator": "MatMul",
+          "bound": "compute",
+          "compile_pass": 91,
+          "e2e_pass": 85.7,
+          "tokens_k": 150,
+          "rounds": 8,
+          "wall_time_s": 290,
+          "profiling_runs": 9,
+          "perf_gain": 34.9,
+          "best_task_duration_us": 64.4,
+          "tool_call_acc": 93.8,
+          "utilization": {
+            "aic": 77,
+            "aiv": 30,
+            "l2_bw": 48,
+            "hbm_bw": 41,
+            "overlap": 46
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 77.9,
+              "Ascend 910C": 64.4
+            },
+            "bf16": {
+              "Ascend 910B": 81,
+              "Ascend 910C": 67
+            },
+            "fp32": {
+              "Ascend 910B": 138.7,
+              "Ascend 910C": 114.6
+            },
+            "int8": {
+              "Ascend 910B": 52.2,
+              "Ascend 910C": 43.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 18.6
+            },
+            {
+              "round": 2,
+              "perf_gain": 25.9
+            },
+            {
+              "round": 3,
+              "perf_gain": 29.1
+            },
+            {
+              "round": 4,
+              "perf_gain": 31.4
+            },
+            {
+              "round": 5,
+              "perf_gain": 33
+            },
+            {
+              "round": 6,
+              "perf_gain": 33.6
+            },
+            {
+              "round": 7,
+              "perf_gain": 34.1
+            },
+            {
+              "round": 8,
+              "perf_gain": 34.9
+            }
+          ]
+        },
+        {
+          "operator": "FlashAttention",
+          "bound": "mixed",
+          "compile_pass": 90.7,
+          "e2e_pass": 85.4,
+          "tokens_k": 147,
+          "rounds": 9,
+          "wall_time_s": 307,
+          "profiling_runs": 8,
+          "perf_gain": 39.8,
+          "best_task_duration_us": 72.1,
+          "tool_call_acc": 93.3,
+          "utilization": {
+            "aic": 64,
+            "aiv": 52,
+            "l2_bw": 58,
+            "hbm_bw": 66,
+            "overlap": 63
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 87.2,
+              "Ascend 910C": 72.1
+            },
+            "bf16": {
+              "Ascend 910B": 90.7,
+              "Ascend 910C": 75
+            },
+            "fp32": {
+              "Ascend 910B": 155.3,
+              "Ascend 910C": 128.3
+            },
+            "int8": {
+              "Ascend 910B": 58.5,
+              "Ascend 910C": 48.3
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 22.7
+            },
+            {
+              "round": 2,
+              "perf_gain": 28.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 33.1
+            },
+            {
+              "round": 4,
+              "perf_gain": 36.1
+            },
+            {
+              "round": 5,
+              "perf_gain": 37.4
+            },
+            {
+              "round": 6,
+              "perf_gain": 38.4
+            },
+            {
+              "round": 7,
+              "perf_gain": 39
+            },
+            {
+              "round": 8,
+              "perf_gain": 39.3
+            },
+            {
+              "round": 9,
+              "perf_gain": 39.8
+            }
+          ]
+        },
+        {
+          "operator": "RMSNorm",
+          "bound": "memory",
+          "compile_pass": 90.5,
+          "e2e_pass": 85.1,
+          "tokens_k": 129,
+          "rounds": 9,
+          "wall_time_s": 261,
+          "profiling_runs": 8,
+          "perf_gain": 28.9,
+          "best_task_duration_us": 43.8,
+          "tool_call_acc": 92.7,
+          "utilization": {
+            "aic": 22,
+            "aiv": 45,
+            "l2_bw": 73,
+            "hbm_bw": 83,
+            "overlap": 31
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 53,
+              "Ascend 910C": 43.8
+            },
+            "bf16": {
+              "Ascend 910B": 55.1,
+              "Ascend 910C": 45.6
+            },
+            "fp32": {
+              "Ascend 910B": 94.3,
+              "Ascend 910C": 78
+            },
+            "int8": {
+              "Ascend 910B": 35.5,
+              "Ascend 910C": 29.3
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 14.2
+            },
+            {
+              "round": 2,
+              "perf_gain": 20.1
+            },
+            {
+              "round": 3,
+              "perf_gain": 24.1
+            },
+            {
+              "round": 4,
+              "perf_gain": 25.8
+            },
+            {
+              "round": 5,
+              "perf_gain": 27
+            },
+            {
+              "round": 6,
+              "perf_gain": 27.9
+            },
+            {
+              "round": 7,
+              "perf_gain": 28.2
+            },
+            {
+              "round": 8,
+              "perf_gain": 28.5
+            },
+            {
+              "round": 9,
+              "perf_gain": 28.9
+            }
+          ]
+        },
+        {
+          "operator": "Softmax",
+          "bound": "vector",
+          "compile_pass": 90.3,
+          "e2e_pass": 84.8,
+          "tokens_k": 124,
+          "rounds": 7,
+          "wall_time_s": 274,
+          "profiling_runs": 7,
+          "perf_gain": 34.7,
+          "best_task_duration_us": 48.9,
+          "tool_call_acc": 92.1,
+          "utilization": {
+            "aic": 16,
+            "aiv": 78,
+            "l2_bw": 65,
+            "hbm_bw": 54,
+            "overlap": 34
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 59.2,
+              "Ascend 910C": 48.9
+            },
+            "bf16": {
+              "Ascend 910B": 61.5,
+              "Ascend 910C": 50.9
+            },
+            "fp32": {
+              "Ascend 910B": 105.3,
+              "Ascend 910C": 87
+            },
+            "int8": {
+              "Ascend 910B": 39.6,
+              "Ascend 910C": 32.8
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 18.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 25.8
+            },
+            {
+              "round": 3,
+              "perf_gain": 28.9
+            },
+            {
+              "round": 4,
+              "perf_gain": 31.2
+            },
+            {
+              "round": 5,
+              "perf_gain": 32.8
+            },
+            {
+              "round": 6,
+              "perf_gain": 33.5
+            },
+            {
+              "round": 7,
+              "perf_gain": 34.7
+            }
+          ]
+        },
+        {
+          "operator": "RoPE",
+          "bound": "vector",
+          "compile_pass": 90.1,
+          "e2e_pass": 84.5,
+          "tokens_k": 123,
+          "rounds": 8,
+          "wall_time_s": 261,
+          "profiling_runs": 8,
+          "perf_gain": 27.5,
+          "best_task_duration_us": 40.4,
+          "tool_call_acc": 93.8,
+          "utilization": {
+            "aic": 20,
+            "aiv": 80,
+            "l2_bw": 62,
+            "hbm_bw": 50,
+            "overlap": 33
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 48.9,
+              "Ascend 910C": 40.4
+            },
+            "bf16": {
+              "Ascend 910B": 50.8,
+              "Ascend 910C": 42
+            },
+            "fp32": {
+              "Ascend 910B": 87,
+              "Ascend 910C": 71.9
+            },
+            "int8": {
+              "Ascend 910B": 32.8,
+              "Ascend 910C": 27.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 15.7
+            },
+            {
+              "round": 2,
+              "perf_gain": 19.8
+            },
+            {
+              "round": 3,
+              "perf_gain": 22.9
+            },
+            {
+              "round": 4,
+              "perf_gain": 25
+            },
+            {
+              "round": 5,
+              "perf_gain": 25.9
+            },
+            {
+              "round": 6,
+              "perf_gain": 26.5
+            },
+            {
+              "round": 7,
+              "perf_gain": 27
+            },
+            {
+              "round": 8,
+              "perf_gain": 27.5
+            }
+          ]
+        },
+        {
+          "operator": "SwiGLU",
+          "bound": "mixed",
+          "compile_pass": 89.9,
+          "e2e_pass": 84.2,
+          "tokens_k": 127,
+          "rounds": 9,
+          "wall_time_s": 291,
+          "profiling_runs": 7,
+          "perf_gain": 36.6,
+          "best_task_duration_us": 55.7,
+          "tool_call_acc": 93.3,
+          "utilization": {
+            "aic": 71,
+            "aiv": 57,
+            "l2_bw": 57,
+            "hbm_bw": 60,
+            "overlap": 56
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 67.4,
+              "Ascend 910C": 55.7
+            },
+            "bf16": {
+              "Ascend 910B": 70.1,
+              "Ascend 910C": 57.9
+            },
+            "fp32": {
+              "Ascend 910B": 120,
+              "Ascend 910C": 99.1
+            },
+            "int8": {
+              "Ascend 910B": 45.2,
+              "Ascend 910C": 37.3
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 18
+            },
+            {
+              "round": 2,
+              "perf_gain": 25.5
+            },
+            {
+              "round": 3,
+              "perf_gain": 30.5
+            },
+            {
+              "round": 4,
+              "perf_gain": 32.6
+            },
+            {
+              "round": 5,
+              "perf_gain": 34.2
+            },
+            {
+              "round": 6,
+              "perf_gain": 35.3
+            },
+            {
+              "round": 7,
+              "perf_gain": 35.7
+            },
+            {
+              "round": 8,
+              "perf_gain": 36.1
+            },
+            {
+              "round": 9,
+              "perf_gain": 36.6
+            }
+          ]
+        },
+        {
+          "operator": "LayerNorm",
+          "bound": "memory",
+          "compile_pass": 89.6,
+          "e2e_pass": 83.8,
+          "tokens_k": 126,
+          "rounds": 7,
+          "wall_time_s": 279,
+          "profiling_runs": 8,
+          "perf_gain": 29.2,
+          "best_task_duration_us": 47.4,
+          "tool_call_acc": 92.7,
+          "utilization": {
+            "aic": 27,
+            "aiv": 44,
+            "l2_bw": 67,
+            "hbm_bw": 76,
+            "overlap": 31
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 57.4,
+              "Ascend 910C": 47.4
+            },
+            "bf16": {
+              "Ascend 910B": 59.6,
+              "Ascend 910C": 49.3
+            },
+            "fp32": {
+              "Ascend 910B": 102.1,
+              "Ascend 910C": 84.4
+            },
+            "int8": {
+              "Ascend 910B": 38.4,
+              "Ascend 910C": 31.8
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 15.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 21.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 24.3
+            },
+            {
+              "round": 4,
+              "perf_gain": 26.3
+            },
+            {
+              "round": 5,
+              "perf_gain": 27.6
+            },
+            {
+              "round": 6,
+              "perf_gain": 28.2
+            },
+            {
+              "round": 7,
+              "perf_gain": 29.2
+            }
+          ]
+        },
+        {
+          "operator": "Transpose",
+          "bound": "memory",
+          "compile_pass": 89.4,
+          "e2e_pass": 83.5,
+          "tokens_k": 123,
+          "rounds": 7,
+          "wall_time_s": 263,
+          "profiling_runs": 7,
+          "perf_gain": 31.3,
+          "best_task_duration_us": 35,
+          "tool_call_acc": 92.1,
+          "utilization": {
+            "aic": 23,
+            "aiv": 43,
+            "l2_bw": 68,
+            "hbm_bw": 80,
+            "overlap": 34
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 42.4,
+              "Ascend 910C": 35
+            },
+            "bf16": {
+              "Ascend 910B": 44,
+              "Ascend 910C": 36.4
+            },
+            "fp32": {
+              "Ascend 910B": 75.4,
+              "Ascend 910C": 62.3
+            },
+            "int8": {
+              "Ascend 910B": 28.4,
+              "Ascend 910C": 23.5
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 17.9
+            },
+            {
+              "round": 2,
+              "perf_gain": 22.6
+            },
+            {
+              "round": 3,
+              "perf_gain": 26.1
+            },
+            {
+              "round": 4,
+              "perf_gain": 28.4
+            },
+            {
+              "round": 5,
+              "perf_gain": 29.4
+            },
+            {
+              "round": 6,
+              "perf_gain": 30.2
+            },
+            {
+              "round": 7,
+              "perf_gain": 31.3
+            }
+          ]
+        },
+        {
+          "operator": "GroupedMatMul",
+          "bound": "compute",
+          "compile_pass": 89.2,
+          "e2e_pass": 83.2,
+          "tokens_k": 151,
+          "rounds": 10,
+          "wall_time_s": 339,
+          "profiling_runs": 9,
+          "perf_gain": 37.7,
+          "best_task_duration_us": 79.1,
+          "tool_call_acc": 93.8,
+          "utilization": {
+            "aic": 73,
+            "aiv": 30,
+            "l2_bw": 53,
+            "hbm_bw": 47,
+            "overlap": 46
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 95.7,
+              "Ascend 910C": 79.1
+            },
+            "bf16": {
+              "Ascend 910B": 99.5,
+              "Ascend 910C": 82.3
+            },
+            "fp32": {
+              "Ascend 910B": 170.4,
+              "Ascend 910C": 140.8
+            },
+            "int8": {
+              "Ascend 910B": 64.1,
+              "Ascend 910C": 53
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 18.6
+            },
+            {
+              "round": 2,
+              "perf_gain": 26.2
+            },
+            {
+              "round": 3,
+              "perf_gain": 31.4
+            },
+            {
+              "round": 4,
+              "perf_gain": 33.6
+            },
+            {
+              "round": 5,
+              "perf_gain": 35.2
+            },
+            {
+              "round": 6,
+              "perf_gain": 36.3
+            },
+            {
+              "round": 7,
+              "perf_gain": 36.8
+            },
+            {
+              "round": 8,
+              "perf_gain": 37.2
+            },
+            {
+              "round": 9,
+              "perf_gain": 37.4
+            },
+            {
+              "round": 10,
+              "perf_gain": 37.7
+            }
+          ]
+        },
+        {
+          "operator": "Add",
+          "bound": "memory",
+          "compile_pass": 89,
+          "e2e_pass": 82.9,
+          "tokens_k": 113,
+          "rounds": 6,
+          "wall_time_s": 255,
+          "profiling_runs": 6,
+          "perf_gain": 28.6,
+          "best_task_duration_us": 26.8,
+          "tool_call_acc": 93.3,
+          "utilization": {
+            "aic": 23,
+            "aiv": 48,
+            "l2_bw": 75,
+            "hbm_bw": 81,
+            "overlap": 28
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 32.4,
+              "Ascend 910C": 26.8
+            },
+            "bf16": {
+              "Ascend 910B": 33.7,
+              "Ascend 910C": 27.9
+            },
+            "fp32": {
+              "Ascend 910B": 57.7,
+              "Ascend 910C": 47.7
+            },
+            "int8": {
+              "Ascend 910B": 21.7,
+              "Ascend 910C": 18
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 15.2
+            },
+            {
+              "round": 2,
+              "perf_gain": 21.2
+            },
+            {
+              "round": 3,
+              "perf_gain": 23.8
+            },
+            {
+              "round": 4,
+              "perf_gain": 25.7
+            },
+            {
+              "round": 5,
+              "perf_gain": 27
+            },
+            {
+              "round": 6,
+              "perf_gain": 28.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qwen3-7-max",
+      "name": "Qwen3.7-Max",
+      "vendor": "Alibaba",
+      "vendor_mark": "Q",
+      "family": "Qwen",
+      "weights": "closed",
+      "color": "#F6D76B",
+      "links": {
+        "model_card": "#",
+        "api": "#",
+        "report": "#"
+      },
+      "overall": {
+        "perf_score": 78.1,
+        "compile_pass": 89.9,
+        "e2e_pass": 84.3,
+        "perf_gain_median": 31.5,
+        "task_duration_median_us": 69.2,
+        "tokens_total_k": 1050,
+        "api_cost_usd": 5.1,
+        "rounds_median": 8,
+        "wall_time_median_s": 279,
+        "profiling_runs_median": 7,
+        "tool_call_acc": 92.5
+      },
+      "per_operator": [
+        {
+          "operator": "MatMul",
+          "bound": "compute",
+          "compile_pass": 89.6,
+          "e2e_pass": 83.9,
+          "tokens_k": 129,
+          "rounds": 9,
+          "wall_time_s": 304,
+          "profiling_runs": 8,
+          "perf_gain": 34.6,
+          "best_task_duration_us": 66.7,
+          "tool_call_acc": 92.5,
+          "utilization": {
+            "aic": 72,
+            "aiv": 27,
+            "l2_bw": 49,
+            "hbm_bw": 43,
+            "overlap": 46
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 80.7,
+              "Ascend 910C": 66.7
+            },
+            "bf16": {
+              "Ascend 910B": 83.9,
+              "Ascend 910C": 69.4
+            },
+            "fp32": {
+              "Ascend 910B": 143.7,
+              "Ascend 910C": 118.7
+            },
+            "int8": {
+              "Ascend 910B": 54.1,
+              "Ascend 910C": 44.7
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 18.4
+            },
+            {
+              "round": 2,
+              "perf_gain": 25.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 28.8
+            },
+            {
+              "round": 4,
+              "perf_gain": 31.1
+            },
+            {
+              "round": 5,
+              "perf_gain": 32.7
+            },
+            {
+              "round": 6,
+              "perf_gain": 33.4
+            },
+            {
+              "round": 7,
+              "perf_gain": 33.9
+            },
+            {
+              "round": 8,
+              "perf_gain": 34.2
+            },
+            {
+              "round": 9,
+              "perf_gain": 34.6
+            }
+          ]
+        },
+        {
+          "operator": "FlashAttention",
+          "bound": "mixed",
+          "compile_pass": 89.4,
+          "e2e_pass": 83.6,
+          "tokens_k": 126,
+          "rounds": 10,
+          "wall_time_s": 322,
+          "profiling_runs": 9,
+          "perf_gain": 31.8,
+          "best_task_duration_us": 76.7,
+          "tool_call_acc": 92,
+          "utilization": {
+            "aic": 61,
+            "aiv": 53,
+            "l2_bw": 60,
+            "hbm_bw": 66,
+            "overlap": 58
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 92.8,
+              "Ascend 910C": 76.7
+            },
+            "bf16": {
+              "Ascend 910B": 96.5,
+              "Ascend 910C": 79.8
+            },
+            "fp32": {
+              "Ascend 910B": 165.2,
+              "Ascend 910C": 136.5
+            },
+            "int8": {
+              "Ascend 910B": 62.2,
+              "Ascend 910C": 51.4
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 18.2
+            },
+            {
+              "round": 2,
+              "perf_gain": 22.9
+            },
+            {
+              "round": 3,
+              "perf_gain": 26.5
+            },
+            {
+              "round": 4,
+              "perf_gain": 28.9
+            },
+            {
+              "round": 5,
+              "perf_gain": 29.9
+            },
+            {
+              "round": 6,
+              "perf_gain": 30.7
+            },
+            {
+              "round": 7,
+              "perf_gain": 31.2
+            },
+            {
+              "round": 8,
+              "perf_gain": 31.4
+            },
+            {
+              "round": 9,
+              "perf_gain": 31.6
+            },
+            {
+              "round": 10,
+              "perf_gain": 31.8
+            }
+          ]
+        },
+        {
+          "operator": "RMSNorm",
+          "bound": "memory",
+          "compile_pass": 89.1,
+          "e2e_pass": 83.3,
+          "tokens_k": 110,
+          "rounds": 7,
+          "wall_time_s": 274,
+          "profiling_runs": 7,
+          "perf_gain": 29.9,
+          "best_task_duration_us": 45.2,
+          "tool_call_acc": 91.4,
+          "utilization": {
+            "aic": 23,
+            "aiv": 47,
+            "l2_bw": 73,
+            "hbm_bw": 78,
+            "overlap": 26
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 54.7,
+              "Ascend 910C": 45.2
+            },
+            "bf16": {
+              "Ascend 910B": 56.9,
+              "Ascend 910C": 47
+            },
+            "fp32": {
+              "Ascend 910B": 97.4,
+              "Ascend 910C": 80.5
+            },
+            "int8": {
+              "Ascend 910B": 36.6,
+              "Ascend 910C": 30.3
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 14.7
+            },
+            {
+              "round": 2,
+              "perf_gain": 20.8
+            },
+            {
+              "round": 3,
+              "perf_gain": 24.9
+            },
+            {
+              "round": 4,
+              "perf_gain": 26.6
+            },
+            {
+              "round": 5,
+              "perf_gain": 27.9
+            },
+            {
+              "round": 6,
+              "perf_gain": 28.8
+            },
+            {
+              "round": 7,
+              "perf_gain": 29.9
+            }
+          ]
+        },
+        {
+          "operator": "Softmax",
+          "bound": "vector",
+          "compile_pass": 88.9,
+          "e2e_pass": 83,
+          "tokens_k": 122,
+          "rounds": 8,
+          "wall_time_s": 287,
+          "profiling_runs": 8,
+          "perf_gain": 27.4,
+          "best_task_duration_us": 51.9,
+          "tool_call_acc": 90.9,
+          "utilization": {
+            "aic": 18,
+            "aiv": 78,
+            "l2_bw": 60,
+            "hbm_bw": 49,
+            "overlap": 31
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 62.8,
+              "Ascend 910C": 51.9
+            },
+            "bf16": {
+              "Ascend 910B": 65.3,
+              "Ascend 910C": 54
+            },
+            "fp32": {
+              "Ascend 910B": 111.8,
+              "Ascend 910C": 92.4
+            },
+            "int8": {
+              "Ascend 910B": 42.1,
+              "Ascend 910C": 34.8
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 14.6
+            },
+            {
+              "round": 2,
+              "perf_gain": 20.3
+            },
+            {
+              "round": 3,
+              "perf_gain": 22.8
+            },
+            {
+              "round": 4,
+              "perf_gain": 24.6
+            },
+            {
+              "round": 5,
+              "perf_gain": 25.9
+            },
+            {
+              "round": 6,
+              "perf_gain": 26.4
+            },
+            {
+              "round": 7,
+              "perf_gain": 26.8
+            },
+            {
+              "round": 8,
+              "perf_gain": 27.4
+            }
+          ]
+        },
+        {
+          "operator": "RoPE",
+          "bound": "vector",
+          "compile_pass": 88.7,
+          "e2e_pass": 82.7,
+          "tokens_k": 105,
+          "rounds": 9,
+          "wall_time_s": 274,
+          "profiling_runs": 7,
+          "perf_gain": 27,
+          "best_task_duration_us": 41.8,
+          "tool_call_acc": 92.5,
+          "utilization": {
+            "aic": 20,
+            "aiv": 75,
+            "l2_bw": 57,
+            "hbm_bw": 47,
+            "overlap": 33
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 50.6,
+              "Ascend 910C": 41.8
+            },
+            "bf16": {
+              "Ascend 910B": 52.6,
+              "Ascend 910C": 43.5
+            },
+            "fp32": {
+              "Ascend 910B": 90,
+              "Ascend 910C": 74.4
+            },
+            "int8": {
+              "Ascend 910B": 33.9,
+              "Ascend 910C": 28
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 15.4
+            },
+            {
+              "round": 2,
+              "perf_gain": 19.5
+            },
+            {
+              "round": 3,
+              "perf_gain": 22.5
+            },
+            {
+              "round": 4,
+              "perf_gain": 24.5
+            },
+            {
+              "round": 5,
+              "perf_gain": 25.4
+            },
+            {
+              "round": 6,
+              "perf_gain": 26
+            },
+            {
+              "round": 7,
+              "perf_gain": 26.5
+            },
+            {
+              "round": 8,
+              "perf_gain": 26.7
+            },
+            {
+              "round": 9,
+              "perf_gain": 27
+            }
+          ]
+        },
+        {
+          "operator": "SwiGLU",
+          "bound": "mixed",
+          "compile_pass": 88.5,
+          "e2e_pass": 82.4,
+          "tokens_k": 124,
+          "rounds": 7,
+          "wall_time_s": 305,
+          "profiling_runs": 8,
+          "perf_gain": 31.5,
+          "best_task_duration_us": 58.6,
+          "tool_call_acc": 92,
+          "utilization": {
+            "aic": 66,
+            "aiv": 52,
+            "l2_bw": 54,
+            "hbm_bw": 60,
+            "overlap": 58
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 70.9,
+              "Ascend 910C": 58.6
+            },
+            "bf16": {
+              "Ascend 910B": 73.7,
+              "Ascend 910C": 60.9
+            },
+            "fp32": {
+              "Ascend 910B": 126.2,
+              "Ascend 910C": 104.3
+            },
+            "int8": {
+              "Ascend 910B": 47.5,
+              "Ascend 910C": 39.3
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 15.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 21.9
+            },
+            {
+              "round": 3,
+              "perf_gain": 26.2
+            },
+            {
+              "round": 4,
+              "perf_gain": 28.1
+            },
+            {
+              "round": 5,
+              "perf_gain": 29.4
+            },
+            {
+              "round": 6,
+              "perf_gain": 30.4
+            },
+            {
+              "round": 7,
+              "perf_gain": 31.5
+            }
+          ]
+        },
+        {
+          "operator": "LayerNorm",
+          "bound": "memory",
+          "compile_pass": 88.3,
+          "e2e_pass": 82,
+          "tokens_k": 107,
+          "rounds": 8,
+          "wall_time_s": 292,
+          "profiling_runs": 7,
+          "perf_gain": 26.3,
+          "best_task_duration_us": 49.5,
+          "tool_call_acc": 91.4,
+          "utilization": {
+            "aic": 22,
+            "aiv": 41,
+            "l2_bw": 67,
+            "hbm_bw": 78,
+            "overlap": 32
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 59.9,
+              "Ascend 910C": 49.5
+            },
+            "bf16": {
+              "Ascend 910B": 62.3,
+              "Ascend 910C": 51.5
+            },
+            "fp32": {
+              "Ascend 910B": 106.6,
+              "Ascend 910C": 88.1
+            },
+            "int8": {
+              "Ascend 910B": 40.1,
+              "Ascend 910C": 33.2
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 14
+            },
+            {
+              "round": 2,
+              "perf_gain": 19.5
+            },
+            {
+              "round": 3,
+              "perf_gain": 21.9
+            },
+            {
+              "round": 4,
+              "perf_gain": 23.7
+            },
+            {
+              "round": 5,
+              "perf_gain": 24.8
+            },
+            {
+              "round": 6,
+              "perf_gain": 25.4
+            },
+            {
+              "round": 7,
+              "perf_gain": 25.7
+            },
+            {
+              "round": 8,
+              "perf_gain": 26.3
+            }
+          ]
+        },
+        {
+          "operator": "Transpose",
+          "bound": "memory",
+          "compile_pass": 88,
+          "e2e_pass": 81.7,
+          "tokens_k": 105,
+          "rounds": 8,
+          "wall_time_s": 275,
+          "profiling_runs": 8,
+          "perf_gain": 28.2,
+          "best_task_duration_us": 36.6,
+          "tool_call_acc": 90.9,
+          "utilization": {
+            "aic": 20,
+            "aiv": 43,
+            "l2_bw": 70,
+            "hbm_bw": 81,
+            "overlap": 30
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 44.3,
+              "Ascend 910C": 36.6
+            },
+            "bf16": {
+              "Ascend 910B": 46.1,
+              "Ascend 910C": 38.1
+            },
+            "fp32": {
+              "Ascend 910B": 78.8,
+              "Ascend 910C": 65.1
+            },
+            "int8": {
+              "Ascend 910B": 29.7,
+              "Ascend 910C": 24.5
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 16.1
+            },
+            {
+              "round": 2,
+              "perf_gain": 20.3
+            },
+            {
+              "round": 3,
+              "perf_gain": 23.5
+            },
+            {
+              "round": 4,
+              "perf_gain": 25.6
+            },
+            {
+              "round": 5,
+              "perf_gain": 26.5
+            },
+            {
+              "round": 6,
+              "perf_gain": 27.2
+            },
+            {
+              "round": 7,
+              "perf_gain": 27.6
+            },
+            {
+              "round": 8,
+              "perf_gain": 28.2
+            }
+          ]
+        },
+        {
+          "operator": "GroupedMatMul",
+          "bound": "compute",
+          "compile_pass": 87.8,
+          "e2e_pass": 81.4,
+          "tokens_k": 145,
+          "rounds": 8,
+          "wall_time_s": 354,
+          "profiling_runs": 8,
+          "perf_gain": 33.4,
+          "best_task_duration_us": 83,
+          "tool_call_acc": 92.5,
+          "utilization": {
+            "aic": 73,
+            "aiv": 32,
+            "l2_bw": 54,
+            "hbm_bw": 43,
+            "overlap": 41
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 100.4,
+              "Ascend 910C": 83
+            },
+            "bf16": {
+              "Ascend 910B": 104.4,
+              "Ascend 910C": 86.3
+            },
+            "fp32": {
+              "Ascend 910B": 178.8,
+              "Ascend 910C": 147.7
+            },
+            "int8": {
+              "Ascend 910B": 67.3,
+              "Ascend 910C": 55.6
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 16.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 23.2
+            },
+            {
+              "round": 3,
+              "perf_gain": 27.8
+            },
+            {
+              "round": 4,
+              "perf_gain": 29.8
+            },
+            {
+              "round": 5,
+              "perf_gain": 31.2
+            },
+            {
+              "round": 6,
+              "perf_gain": 32.2
+            },
+            {
+              "round": 7,
+              "perf_gain": 32.6
+            },
+            {
+              "round": 8,
+              "perf_gain": 33.4
+            }
+          ]
+        },
+        {
+          "operator": "Add",
+          "bound": "memory",
+          "compile_pass": 87.6,
+          "e2e_pass": 81.1,
+          "tokens_k": 96,
+          "rounds": 7,
+          "wall_time_s": 266,
+          "profiling_runs": 7,
+          "perf_gain": 25.5,
+          "best_task_duration_us": 28,
+          "tool_call_acc": 92,
+          "utilization": {
+            "aic": 25,
+            "aiv": 49,
+            "l2_bw": 71,
+            "hbm_bw": 76,
+            "overlap": 24
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 33.9,
+              "Ascend 910C": 28
+            },
+            "bf16": {
+              "Ascend 910B": 35.2,
+              "Ascend 910C": 29.1
+            },
+            "fp32": {
+              "Ascend 910B": 60.3,
+              "Ascend 910C": 49.8
+            },
+            "int8": {
+              "Ascend 910B": 22.7,
+              "Ascend 910C": 18.8
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 13.6
+            },
+            {
+              "round": 2,
+              "perf_gain": 18.9
+            },
+            {
+              "round": 3,
+              "perf_gain": 21.2
+            },
+            {
+              "round": 4,
+              "perf_gain": 22.9
+            },
+            {
+              "round": 5,
+              "perf_gain": 24.1
+            },
+            {
+              "round": 6,
+              "perf_gain": 24.6
+            },
+            {
+              "round": 7,
+              "perf_gain": 25.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "glm-5-2",
+      "name": "GLM-5.2",
+      "vendor": "Zhipu",
+      "vendor_mark": "Z",
+      "family": "GLM",
+      "weights": "open",
+      "color": "#7DD3FC",
+      "links": {
+        "model_card": "#",
+        "api": "#",
+        "report": "#"
+      },
+      "overall": {
+        "perf_score": 75.4,
+        "compile_pass": 88.1,
+        "e2e_pass": 82.1,
+        "perf_gain_median": 28.9,
+        "task_duration_median_us": 72.6,
+        "tokens_total_k": 1220,
+        "api_cost_usd": 3.9,
+        "rounds_median": 9,
+        "wall_time_median_s": 301,
+        "profiling_runs_median": 8,
+        "tool_call_acc": 90.7
+      },
+      "per_operator": [
+        {
+          "operator": "MatMul",
+          "bound": "compute",
+          "compile_pass": 87.7,
+          "e2e_pass": 81.6,
+          "tokens_k": 142,
+          "rounds": 11,
+          "wall_time_s": 328,
+          "profiling_runs": 10,
+          "perf_gain": 30.4,
+          "best_task_duration_us": 71,
+          "tool_call_acc": 90.7,
+          "utilization": {
+            "aic": 69,
+            "aiv": 28,
+            "l2_bw": 51,
+            "hbm_bw": 43,
+            "overlap": 42
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 85.9,
+              "Ascend 910C": 71
+            },
+            "bf16": {
+              "Ascend 910B": 89.3,
+              "Ascend 910C": 73.8
+            },
+            "fp32": {
+              "Ascend 910B": 152.9,
+              "Ascend 910C": 126.4
+            },
+            "int8": {
+              "Ascend 910B": 57.6,
+              "Ascend 910C": 47.6
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 16.2
+            },
+            {
+              "round": 2,
+              "perf_gain": 22.6
+            },
+            {
+              "round": 3,
+              "perf_gain": 25.3
+            },
+            {
+              "round": 4,
+              "perf_gain": 27.3
+            },
+            {
+              "round": 5,
+              "perf_gain": 28.7
+            },
+            {
+              "round": 6,
+              "perf_gain": 29.3
+            },
+            {
+              "round": 7,
+              "perf_gain": 29.7
+            },
+            {
+              "round": 8,
+              "perf_gain": 30
+            },
+            {
+              "round": 9,
+              "perf_gain": 30.2
+            },
+            {
+              "round": 10,
+              "perf_gain": 30.3
+            },
+            {
+              "round": 11,
+              "perf_gain": 30.4
+            }
+          ]
+        },
+        {
+          "operator": "FlashAttention",
+          "bound": "mixed",
+          "compile_pass": 87.5,
+          "e2e_pass": 81.3,
+          "tokens_k": 157,
+          "rounds": 9,
+          "wall_time_s": 347,
+          "profiling_runs": 9,
+          "perf_gain": 13.1,
+          "best_task_duration_us": 85.6,
+          "tool_call_acc": 90.2,
+          "utilization": {
+            "aic": 62,
+            "aiv": 55,
+            "l2_bw": 60,
+            "hbm_bw": 62,
+            "overlap": 53
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 103.6,
+              "Ascend 910C": 85.6
+            },
+            "bf16": {
+              "Ascend 910B": 107.7,
+              "Ascend 910C": 89
+            },
+            "fp32": {
+              "Ascend 910B": 184.4,
+              "Ascend 910C": 152.4
+            },
+            "int8": {
+              "Ascend 910B": 69.4,
+              "Ascend 910C": 57.4
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 7.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 9.4
+            },
+            {
+              "round": 3,
+              "perf_gain": 10.9
+            },
+            {
+              "round": 4,
+              "perf_gain": 11.9
+            },
+            {
+              "round": 5,
+              "perf_gain": 12.3
+            },
+            {
+              "round": 6,
+              "perf_gain": 12.6
+            },
+            {
+              "round": 7,
+              "perf_gain": 12.8
+            },
+            {
+              "round": 8,
+              "perf_gain": 12.9
+            },
+            {
+              "round": 9,
+              "perf_gain": 13.1
+            }
+          ]
+        },
+        {
+          "operator": "RMSNorm",
+          "bound": "memory",
+          "compile_pass": 87.3,
+          "e2e_pass": 81,
+          "tokens_k": 121,
+          "rounds": 9,
+          "wall_time_s": 295,
+          "profiling_runs": 9,
+          "perf_gain": 21.8,
+          "best_task_duration_us": 48.7,
+          "tool_call_acc": 89.6,
+          "utilization": {
+            "aic": 25,
+            "aiv": 47,
+            "l2_bw": 69,
+            "hbm_bw": 73,
+            "overlap": 22
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 58.9,
+              "Ascend 910C": 48.7
+            },
+            "bf16": {
+              "Ascend 910B": 61.3,
+              "Ascend 910C": 50.6
+            },
+            "fp32": {
+              "Ascend 910B": 104.9,
+              "Ascend 910C": 86.7
+            },
+            "int8": {
+              "Ascend 910B": 39.5,
+              "Ascend 910C": 32.6
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 10.7
+            },
+            {
+              "round": 2,
+              "perf_gain": 15.2
+            },
+            {
+              "round": 3,
+              "perf_gain": 18.2
+            },
+            {
+              "round": 4,
+              "perf_gain": 19.4
+            },
+            {
+              "round": 5,
+              "perf_gain": 20.4
+            },
+            {
+              "round": 6,
+              "perf_gain": 21
+            },
+            {
+              "round": 7,
+              "perf_gain": 21.3
+            },
+            {
+              "round": 8,
+              "perf_gain": 21.5
+            },
+            {
+              "round": 9,
+              "perf_gain": 21.8
+            }
+          ]
+        },
+        {
+          "operator": "Softmax",
+          "bound": "vector",
+          "compile_pass": 87,
+          "e2e_pass": 80.7,
+          "tokens_k": 133,
+          "rounds": 10,
+          "wall_time_s": 309,
+          "profiling_runs": 8,
+          "perf_gain": 25.8,
+          "best_task_duration_us": 54.7,
+          "tool_call_acc": 89.1,
+          "utilization": {
+            "aic": 18,
+            "aiv": 74,
+            "l2_bw": 55,
+            "hbm_bw": 45,
+            "overlap": 31
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 66.2,
+              "Ascend 910C": 54.7
+            },
+            "bf16": {
+              "Ascend 910B": 68.8,
+              "Ascend 910C": 56.9
+            },
+            "fp32": {
+              "Ascend 910B": 117.8,
+              "Ascend 910C": 97.4
+            },
+            "int8": {
+              "Ascend 910B": 44.3,
+              "Ascend 910C": 36.6
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 13.7
+            },
+            {
+              "round": 2,
+              "perf_gain": 19.2
+            },
+            {
+              "round": 3,
+              "perf_gain": 21.5
+            },
+            {
+              "round": 4,
+              "perf_gain": 23.2
+            },
+            {
+              "round": 5,
+              "perf_gain": 24.4
+            },
+            {
+              "round": 6,
+              "perf_gain": 24.9
+            },
+            {
+              "round": 7,
+              "perf_gain": 25.2
+            },
+            {
+              "round": 8,
+              "perf_gain": 25.5
+            },
+            {
+              "round": 9,
+              "perf_gain": 25.6
+            },
+            {
+              "round": 10,
+              "perf_gain": 25.8
+            }
+          ]
+        },
+        {
+          "operator": "RoPE",
+          "bound": "vector",
+          "compile_pass": 86.8,
+          "e2e_pass": 80.4,
+          "tokens_k": 132,
+          "rounds": 8,
+          "wall_time_s": 294,
+          "profiling_runs": 9,
+          "perf_gain": 25.9,
+          "best_task_duration_us": 44,
+          "tool_call_acc": 90.7,
+          "utilization": {
+            "aic": 16,
+            "aiv": 70,
+            "l2_bw": 53,
+            "hbm_bw": 47,
+            "overlap": 35
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 53.2,
+              "Ascend 910C": 44
+            },
+            "bf16": {
+              "Ascend 910B": 55.4,
+              "Ascend 910C": 45.8
+            },
+            "fp32": {
+              "Ascend 910B": 94.8,
+              "Ascend 910C": 78.3
+            },
+            "int8": {
+              "Ascend 910B": 35.7,
+              "Ascend 910C": 29.5
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 14.8
+            },
+            {
+              "round": 2,
+              "perf_gain": 18.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 21.6
+            },
+            {
+              "round": 4,
+              "perf_gain": 23.5
+            },
+            {
+              "round": 5,
+              "perf_gain": 24.4
+            },
+            {
+              "round": 6,
+              "perf_gain": 25
+            },
+            {
+              "round": 7,
+              "perf_gain": 25.4
+            },
+            {
+              "round": 8,
+              "perf_gain": 25.9
+            }
+          ]
+        },
+        {
+          "operator": "SwiGLU",
+          "bound": "mixed",
+          "compile_pass": 86.6,
+          "e2e_pass": 80.1,
+          "tokens_k": 136,
+          "rounds": 9,
+          "wall_time_s": 328,
+          "profiling_runs": 8,
+          "perf_gain": 25.3,
+          "best_task_duration_us": 62.8,
+          "tool_call_acc": 90.2,
+          "utilization": {
+            "aic": 61,
+            "aiv": 48,
+            "l2_bw": 54,
+            "hbm_bw": 62,
+            "overlap": 59
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 76,
+              "Ascend 910C": 62.8
+            },
+            "bf16": {
+              "Ascend 910B": 79,
+              "Ascend 910C": 65.3
+            },
+            "fp32": {
+              "Ascend 910B": 135.3,
+              "Ascend 910C": 111.8
+            },
+            "int8": {
+              "Ascend 910B": 50.9,
+              "Ascend 910C": 42.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 12.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 17.6
+            },
+            {
+              "round": 3,
+              "perf_gain": 21.1
+            },
+            {
+              "round": 4,
+              "perf_gain": 22.5
+            },
+            {
+              "round": 5,
+              "perf_gain": 23.6
+            },
+            {
+              "round": 6,
+              "perf_gain": 24.4
+            },
+            {
+              "round": 7,
+              "perf_gain": 24.7
+            },
+            {
+              "round": 8,
+              "perf_gain": 24.9
+            },
+            {
+              "round": 9,
+              "perf_gain": 25.3
+            }
+          ]
+        },
+        {
+          "operator": "LayerNorm",
+          "bound": "memory",
+          "compile_pass": 86.4,
+          "e2e_pass": 79.7,
+          "tokens_k": 135,
+          "rounds": 10,
+          "wall_time_s": 313,
+          "profiling_runs": 9,
+          "perf_gain": 23.8,
+          "best_task_duration_us": 52.4,
+          "tool_call_acc": 89.6,
+          "utilization": {
+            "aic": 18,
+            "aiv": 41,
+            "l2_bw": 69,
+            "hbm_bw": 79,
+            "overlap": 29
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 63.4,
+              "Ascend 910C": 52.4
+            },
+            "bf16": {
+              "Ascend 910B": 65.9,
+              "Ascend 910C": 54.5
+            },
+            "fp32": {
+              "Ascend 910B": 112.9,
+              "Ascend 910C": 93.3
+            },
+            "int8": {
+              "Ascend 910B": 42.5,
+              "Ascend 910C": 35.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 12.7
+            },
+            {
+              "round": 2,
+              "perf_gain": 17.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 19.8
+            },
+            {
+              "round": 4,
+              "perf_gain": 21.4
+            },
+            {
+              "round": 5,
+              "perf_gain": 22.5
+            },
+            {
+              "round": 6,
+              "perf_gain": 22.9
+            },
+            {
+              "round": 7,
+              "perf_gain": 23.3
+            },
+            {
+              "round": 8,
+              "perf_gain": 23.5
+            },
+            {
+              "round": 9,
+              "perf_gain": 23.6
+            },
+            {
+              "round": 10,
+              "perf_gain": 23.8
+            }
+          ]
+        },
+        {
+          "operator": "Transpose",
+          "bound": "memory",
+          "compile_pass": 86.2,
+          "e2e_pass": 79.4,
+          "tokens_k": 115,
+          "rounds": 7,
+          "wall_time_s": 295,
+          "profiling_runs": 8,
+          "perf_gain": 25.1,
+          "best_task_duration_us": 38.8,
+          "tool_call_acc": 89.1,
+          "utilization": {
+            "aic": 20,
+            "aiv": 45,
+            "l2_bw": 71,
+            "hbm_bw": 78,
+            "overlap": 25
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 46.9,
+              "Ascend 910C": 38.8
+            },
+            "bf16": {
+              "Ascend 910B": 48.8,
+              "Ascend 910C": 40.4
+            },
+            "fp32": {
+              "Ascend 910B": 83.6,
+              "Ascend 910C": 69.1
+            },
+            "int8": {
+              "Ascend 910B": 31.5,
+              "Ascend 910C": 26
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 14.3
+            },
+            {
+              "round": 2,
+              "perf_gain": 18.1
+            },
+            {
+              "round": 3,
+              "perf_gain": 20.9
+            },
+            {
+              "round": 4,
+              "perf_gain": 22.8
+            },
+            {
+              "round": 5,
+              "perf_gain": 23.6
+            },
+            {
+              "round": 6,
+              "perf_gain": 24.2
+            },
+            {
+              "round": 7,
+              "perf_gain": 25.1
+            }
+          ]
+        },
+        {
+          "operator": "GroupedMatMul",
+          "bound": "compute",
+          "compile_pass": 85.9,
+          "e2e_pass": 79.1,
+          "tokens_k": 161,
+          "rounds": 10,
+          "wall_time_s": 380,
+          "profiling_runs": 10,
+          "perf_gain": 12.6,
+          "best_task_duration_us": 93.5,
+          "tool_call_acc": 90.7,
+          "utilization": {
+            "aic": 75,
+            "aiv": 33,
+            "l2_bw": 51,
+            "hbm_bw": 38,
+            "overlap": 36
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 113.1,
+              "Ascend 910C": 93.5
+            },
+            "bf16": {
+              "Ascend 910B": 117.7,
+              "Ascend 910C": 97.2
+            },
+            "fp32": {
+              "Ascend 910B": 201.4,
+              "Ascend 910C": 166.4
+            },
+            "int8": {
+              "Ascend 910B": 75.8,
+              "Ascend 910C": 62.6
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 6.2
+            },
+            {
+              "round": 2,
+              "perf_gain": 8.8
+            },
+            {
+              "round": 3,
+              "perf_gain": 10.5
+            },
+            {
+              "round": 4,
+              "perf_gain": 11.2
+            },
+            {
+              "round": 5,
+              "perf_gain": 11.8
+            },
+            {
+              "round": 6,
+              "perf_gain": 12.1
+            },
+            {
+              "round": 7,
+              "perf_gain": 12.3
+            },
+            {
+              "round": 8,
+              "perf_gain": 12.4
+            },
+            {
+              "round": 9,
+              "perf_gain": 12.5
+            },
+            {
+              "round": 10,
+              "perf_gain": 12.6
+            }
+          ]
+        },
+        {
+          "operator": "Add",
+          "bound": "memory",
+          "compile_pass": 85.7,
+          "e2e_pass": 78.8,
+          "tokens_k": 122,
+          "rounds": 9,
+          "wall_time_s": 285,
+          "profiling_runs": 7,
+          "perf_gain": 18.5,
+          "best_task_duration_us": 30.1,
+          "tool_call_acc": 90.2,
+          "utilization": {
+            "aic": 26,
+            "aiv": 46,
+            "l2_bw": 66,
+            "hbm_bw": 71,
+            "overlap": 23
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 36.4,
+              "Ascend 910C": 30.1
+            },
+            "bf16": {
+              "Ascend 910B": 37.9,
+              "Ascend 910C": 31.3
+            },
+            "fp32": {
+              "Ascend 910B": 64.8,
+              "Ascend 910C": 53.6
+            },
+            "int8": {
+              "Ascend 910B": 24.4,
+              "Ascend 910C": 20.2
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 9.8
+            },
+            {
+              "round": 2,
+              "perf_gain": 13.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 15.4
+            },
+            {
+              "round": 4,
+              "perf_gain": 16.6
+            },
+            {
+              "round": 5,
+              "perf_gain": 17.5
+            },
+            {
+              "round": 6,
+              "perf_gain": 17.8
+            },
+            {
+              "round": 7,
+              "perf_gain": 18.1
+            },
+            {
+              "round": 8,
+              "perf_gain": 18.3
+            },
+            {
+              "round": 9,
+              "perf_gain": 18.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kimi-k2-7",
+      "name": "Kimi K2.7",
+      "vendor": "Moonshot",
+      "vendor_mark": "K",
+      "family": "Kimi",
+      "weights": "open",
+      "color": "#FF79A8",
+      "links": {
+        "model_card": "#",
+        "api": "#",
+        "report": "#"
+      },
+      "overall": {
+        "perf_score": 72,
+        "compile_pass": 86.3,
+        "e2e_pass": 79.8,
+        "perf_gain_median": 25.4,
+        "task_duration_median_us": 76,
+        "tokens_total_k": 1310,
+        "api_cost_usd": 3.4,
+        "rounds_median": 10,
+        "wall_time_median_s": 328,
+        "profiling_runs_median": 9,
+        "tool_call_acc": 89.1
+      },
+      "per_operator": [
+        {
+          "operator": "MatMul",
+          "bound": "compute",
+          "compile_pass": 85.8,
+          "e2e_pass": 79.2,
+          "tokens_k": 164,
+          "rounds": 10,
+          "wall_time_s": 357,
+          "profiling_runs": 10,
+          "perf_gain": 22.5,
+          "best_task_duration_us": 76.3,
+          "tool_call_acc": 89.1,
+          "utilization": {
+            "aic": 70,
+            "aiv": 30,
+            "l2_bw": 50,
+            "hbm_bw": 39,
+            "overlap": 36
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 92.3,
+              "Ascend 910C": 76.3
+            },
+            "bf16": {
+              "Ascend 910B": 96,
+              "Ascend 910C": 79.4
+            },
+            "fp32": {
+              "Ascend 910B": 164.3,
+              "Ascend 910C": 135.8
+            },
+            "int8": {
+              "Ascend 910B": 61.9,
+              "Ascend 910C": 51.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 12
+            },
+            {
+              "round": 2,
+              "perf_gain": 16.7
+            },
+            {
+              "round": 3,
+              "perf_gain": 18.7
+            },
+            {
+              "round": 4,
+              "perf_gain": 20.2
+            },
+            {
+              "round": 5,
+              "perf_gain": 21.3
+            },
+            {
+              "round": 6,
+              "perf_gain": 21.7
+            },
+            {
+              "round": 7,
+              "perf_gain": 22
+            },
+            {
+              "round": 8,
+              "perf_gain": 22.2
+            },
+            {
+              "round": 9,
+              "perf_gain": 22.3
+            },
+            {
+              "round": 10,
+              "perf_gain": 22.5
+            }
+          ]
+        },
+        {
+          "operator": "FlashAttention",
+          "bound": "mixed",
+          "compile_pass": 85.6,
+          "e2e_pass": 78.9,
+          "tokens_k": 162,
+          "rounds": 11,
+          "wall_time_s": 378,
+          "profiling_runs": 11,
+          "perf_gain": -3.2,
+          "best_task_duration_us": 94.4,
+          "tool_call_acc": 88.6,
+          "utilization": {
+            "aic": 64,
+            "aiv": 54,
+            "l2_bw": 56,
+            "hbm_bw": 56,
+            "overlap": 49
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 114.2,
+              "Ascend 910C": 94.4
+            },
+            "bf16": {
+              "Ascend 910B": 118.8,
+              "Ascend 910C": 98.2
+            },
+            "fp32": {
+              "Ascend 910B": 203.3,
+              "Ascend 910C": 168
+            },
+            "int8": {
+              "Ascend 910B": 76.5,
+              "Ascend 910C": 63.2
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": -1.8
+            },
+            {
+              "round": 2,
+              "perf_gain": -2.3
+            },
+            {
+              "round": 3,
+              "perf_gain": -2.7
+            },
+            {
+              "round": 4,
+              "perf_gain": -2.9
+            },
+            {
+              "round": 5,
+              "perf_gain": -3
+            },
+            {
+              "round": 6,
+              "perf_gain": -3.1
+            },
+            {
+              "round": 7,
+              "perf_gain": -3.1
+            },
+            {
+              "round": 8,
+              "perf_gain": -3.2
+            },
+            {
+              "round": 9,
+              "perf_gain": -3.2
+            },
+            {
+              "round": 10,
+              "perf_gain": -3.2
+            },
+            {
+              "round": 11,
+              "perf_gain": -3.2
+            }
+          ]
+        },
+        {
+          "operator": "RMSNorm",
+          "bound": "memory",
+          "compile_pass": 85.4,
+          "e2e_pass": 78.6,
+          "tokens_k": 141,
+          "rounds": 11,
+          "wall_time_s": 321,
+          "profiling_runs": 9,
+          "perf_gain": 22.8,
+          "best_task_duration_us": 50.8,
+          "tool_call_acc": 88,
+          "utilization": {
+            "aic": 24,
+            "aiv": 43,
+            "l2_bw": 63,
+            "hbm_bw": 69,
+            "overlap": 22
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 61.5,
+              "Ascend 910C": 50.8
+            },
+            "bf16": {
+              "Ascend 910B": 63.9,
+              "Ascend 910C": 52.8
+            },
+            "fp32": {
+              "Ascend 910B": 109.4,
+              "Ascend 910C": 90.4
+            },
+            "int8": {
+              "Ascend 910B": 41.2,
+              "Ascend 910C": 34
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 11.2
+            },
+            {
+              "round": 2,
+              "perf_gain": 15.9
+            },
+            {
+              "round": 3,
+              "perf_gain": 19
+            },
+            {
+              "round": 4,
+              "perf_gain": 20.3
+            },
+            {
+              "round": 5,
+              "perf_gain": 21.3
+            },
+            {
+              "round": 6,
+              "perf_gain": 22
+            },
+            {
+              "round": 7,
+              "perf_gain": 22.3
+            },
+            {
+              "round": 8,
+              "perf_gain": 22.5
+            },
+            {
+              "round": 9,
+              "perf_gain": 22.6
+            },
+            {
+              "round": 10,
+              "perf_gain": 22.7
+            },
+            {
+              "round": 11,
+              "perf_gain": 22.8
+            }
+          ]
+        },
+        {
+          "operator": "Softmax",
+          "bound": "vector",
+          "compile_pass": 85.2,
+          "e2e_pass": 78.3,
+          "tokens_k": 136,
+          "rounds": 9,
+          "wall_time_s": 335,
+          "profiling_runs": 10,
+          "perf_gain": 22.4,
+          "best_task_duration_us": 58,
+          "tool_call_acc": 87.4,
+          "utilization": {
+            "aic": 14,
+            "aiv": 68,
+            "l2_bw": 51,
+            "hbm_bw": 45,
+            "overlap": 33
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 70.2,
+              "Ascend 910C": 58
+            },
+            "bf16": {
+              "Ascend 910B": 73,
+              "Ascend 910C": 60.3
+            },
+            "fp32": {
+              "Ascend 910B": 124.9,
+              "Ascend 910C": 103.2
+            },
+            "int8": {
+              "Ascend 910B": 47,
+              "Ascend 910C": 38.9
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 11.9
+            },
+            {
+              "round": 2,
+              "perf_gain": 16.6
+            },
+            {
+              "round": 3,
+              "perf_gain": 18.7
+            },
+            {
+              "round": 4,
+              "perf_gain": 20.2
+            },
+            {
+              "round": 5,
+              "perf_gain": 21.2
+            },
+            {
+              "round": 6,
+              "perf_gain": 21.6
+            },
+            {
+              "round": 7,
+              "perf_gain": 21.9
+            },
+            {
+              "round": 8,
+              "perf_gain": 22.1
+            },
+            {
+              "round": 9,
+              "perf_gain": 22.4
+            }
+          ]
+        },
+        {
+          "operator": "RoPE",
+          "bound": "vector",
+          "compile_pass": 84.9,
+          "e2e_pass": 78,
+          "tokens_k": 134,
+          "rounds": 10,
+          "wall_time_s": 320,
+          "profiling_runs": 9,
+          "perf_gain": 17.7,
+          "best_task_duration_us": 47.4,
+          "tool_call_acc": 89.1,
+          "utilization": {
+            "aic": 12,
+            "aiv": 66,
+            "l2_bw": 53,
+            "hbm_bw": 49,
+            "overlap": 35
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 57.4,
+              "Ascend 910C": 47.4
+            },
+            "bf16": {
+              "Ascend 910B": 59.6,
+              "Ascend 910C": 49.3
+            },
+            "fp32": {
+              "Ascend 910B": 102.1,
+              "Ascend 910C": 84.4
+            },
+            "int8": {
+              "Ascend 910B": 38.4,
+              "Ascend 910C": 31.8
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 10.1
+            },
+            {
+              "round": 2,
+              "perf_gain": 12.8
+            },
+            {
+              "round": 3,
+              "perf_gain": 14.7
+            },
+            {
+              "round": 4,
+              "perf_gain": 16.1
+            },
+            {
+              "round": 5,
+              "perf_gain": 16.6
+            },
+            {
+              "round": 6,
+              "perf_gain": 17.1
+            },
+            {
+              "round": 7,
+              "perf_gain": 17.4
+            },
+            {
+              "round": 8,
+              "perf_gain": 17.5
+            },
+            {
+              "round": 9,
+              "perf_gain": 17.6
+            },
+            {
+              "round": 10,
+              "perf_gain": 17.7
+            }
+          ]
+        },
+        {
+          "operator": "SwiGLU",
+          "bound": "mixed",
+          "compile_pass": 84.7,
+          "e2e_pass": 77.7,
+          "tokens_k": 157,
+          "rounds": 11,
+          "wall_time_s": 356,
+          "profiling_runs": 10,
+          "perf_gain": 20.3,
+          "best_task_duration_us": 66.9,
+          "tool_call_acc": 88.6,
+          "utilization": {
+            "aic": 57,
+            "aiv": 48,
+            "l2_bw": 56,
+            "hbm_bw": 62,
+            "overlap": 56
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 80.9,
+              "Ascend 910C": 66.9
+            },
+            "bf16": {
+              "Ascend 910B": 84.2,
+              "Ascend 910C": 69.6
+            },
+            "fp32": {
+              "Ascend 910B": 144.1,
+              "Ascend 910C": 119.1
+            },
+            "int8": {
+              "Ascend 910B": 54.2,
+              "Ascend 910C": 44.8
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 10
+            },
+            {
+              "round": 2,
+              "perf_gain": 14.1
+            },
+            {
+              "round": 3,
+              "perf_gain": 16.9
+            },
+            {
+              "round": 4,
+              "perf_gain": 18.1
+            },
+            {
+              "round": 5,
+              "perf_gain": 19
+            },
+            {
+              "round": 6,
+              "perf_gain": 19.6
+            },
+            {
+              "round": 7,
+              "perf_gain": 19.8
+            },
+            {
+              "round": 8,
+              "perf_gain": 20
+            },
+            {
+              "round": 9,
+              "perf_gain": 20.1
+            },
+            {
+              "round": 10,
+              "perf_gain": 20.2
+            },
+            {
+              "round": 11,
+              "perf_gain": 20.3
+            }
+          ]
+        },
+        {
+          "operator": "LayerNorm",
+          "bound": "memory",
+          "compile_pass": 84.5,
+          "e2e_pass": 77.3,
+          "tokens_k": 138,
+          "rounds": 9,
+          "wall_time_s": 340,
+          "profiling_runs": 9,
+          "perf_gain": 20.7,
+          "best_task_duration_us": 55.4,
+          "tool_call_acc": 88,
+          "utilization": {
+            "aic": 18,
+            "aiv": 43,
+            "l2_bw": 69,
+            "hbm_bw": 76,
+            "overlap": 23
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 67,
+              "Ascend 910C": 55.4
+            },
+            "bf16": {
+              "Ascend 910B": 69.7,
+              "Ascend 910C": 57.6
+            },
+            "fp32": {
+              "Ascend 910B": 119.3,
+              "Ascend 910C": 98.6
+            },
+            "int8": {
+              "Ascend 910B": 44.9,
+              "Ascend 910C": 37.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 11
+            },
+            {
+              "round": 2,
+              "perf_gain": 15.4
+            },
+            {
+              "round": 3,
+              "perf_gain": 17.2
+            },
+            {
+              "round": 4,
+              "perf_gain": 18.6
+            },
+            {
+              "round": 5,
+              "perf_gain": 19.6
+            },
+            {
+              "round": 6,
+              "perf_gain": 20
+            },
+            {
+              "round": 7,
+              "perf_gain": 20.3
+            },
+            {
+              "round": 8,
+              "perf_gain": 20.5
+            },
+            {
+              "round": 9,
+              "perf_gain": 20.7
+            }
+          ]
+        },
+        {
+          "operator": "Transpose",
+          "bound": "memory",
+          "compile_pass": 84.3,
+          "e2e_pass": 77,
+          "tokens_k": 134,
+          "rounds": 9,
+          "wall_time_s": 319,
+          "profiling_runs": 10,
+          "perf_gain": 20.9,
+          "best_task_duration_us": 41.2,
+          "tool_call_acc": 87.4,
+          "utilization": {
+            "aic": 22,
+            "aiv": 45,
+            "l2_bw": 68,
+            "hbm_bw": 72,
+            "overlap": 20
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 49.9,
+              "Ascend 910C": 41.2
+            },
+            "bf16": {
+              "Ascend 910B": 51.8,
+              "Ascend 910C": 42.8
+            },
+            "fp32": {
+              "Ascend 910B": 88.7,
+              "Ascend 910C": 73.3
+            },
+            "int8": {
+              "Ascend 910B": 33.4,
+              "Ascend 910C": 27.6
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 11.9
+            },
+            {
+              "round": 2,
+              "perf_gain": 15.1
+            },
+            {
+              "round": 3,
+              "perf_gain": 17.4
+            },
+            {
+              "round": 4,
+              "perf_gain": 19
+            },
+            {
+              "round": 5,
+              "perf_gain": 19.6
+            },
+            {
+              "round": 6,
+              "perf_gain": 20.1
+            },
+            {
+              "round": 7,
+              "perf_gain": 20.5
+            },
+            {
+              "round": 8,
+              "perf_gain": 20.6
+            },
+            {
+              "round": 9,
+              "perf_gain": 20.9
+            }
+          ]
+        },
+        {
+          "operator": "GroupedMatMul",
+          "bound": "compute",
+          "compile_pass": 84.1,
+          "e2e_pass": 76.7,
+          "tokens_k": 166,
+          "rounds": 12,
+          "wall_time_s": 412,
+          "profiling_runs": 10,
+          "perf_gain": 10.3,
+          "best_task_duration_us": 98.6,
+          "tool_call_acc": 89.1,
+          "utilization": {
+            "aic": 75,
+            "aiv": 30,
+            "l2_bw": 45,
+            "hbm_bw": 33,
+            "overlap": 35
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 119.3,
+              "Ascend 910C": 98.6
+            },
+            "bf16": {
+              "Ascend 910B": 124.1,
+              "Ascend 910C": 102.5
+            },
+            "fp32": {
+              "Ascend 910B": 212.4,
+              "Ascend 910C": 175.5
+            },
+            "int8": {
+              "Ascend 910B": 79.9,
+              "Ascend 910C": 66.1
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 5.1
+            },
+            {
+              "round": 2,
+              "perf_gain": 7.2
+            },
+            {
+              "round": 3,
+              "perf_gain": 8.6
+            },
+            {
+              "round": 4,
+              "perf_gain": 9.2
+            },
+            {
+              "round": 5,
+              "perf_gain": 9.6
+            },
+            {
+              "round": 6,
+              "perf_gain": 9.9
+            },
+            {
+              "round": 7,
+              "perf_gain": 10.1
+            },
+            {
+              "round": 8,
+              "perf_gain": 10.2
+            },
+            {
+              "round": 9,
+              "perf_gain": 10.2
+            },
+            {
+              "round": 10,
+              "perf_gain": 10.2
+            },
+            {
+              "round": 11,
+              "perf_gain": 10.3
+            },
+            {
+              "round": 12,
+              "perf_gain": 10.3
+            }
+          ]
+        },
+        {
+          "operator": "Add",
+          "bound": "memory",
+          "compile_pass": 83.8,
+          "e2e_pass": 76.4,
+          "tokens_k": 123,
+          "rounds": 8,
+          "wall_time_s": 309,
+          "profiling_runs": 9,
+          "perf_gain": 16,
+          "best_task_duration_us": 31.8,
+          "tool_call_acc": 88.6,
+          "utilization": {
+            "aic": 23,
+            "aiv": 40,
+            "l2_bw": 61,
+            "hbm_bw": 70,
+            "overlap": 25
+          },
+          "duration_by_dtype_chip": {
+            "fp16": {
+              "Ascend 910B": 38.5,
+              "Ascend 910C": 31.8
+            },
+            "bf16": {
+              "Ascend 910B": 40,
+              "Ascend 910C": 33.1
+            },
+            "fp32": {
+              "Ascend 910B": 68.5,
+              "Ascend 910C": 56.6
+            },
+            "int8": {
+              "Ascend 910B": 25.8,
+              "Ascend 910C": 21.3
+            }
+          },
+          "trajectories": [
+            {
+              "round": 1,
+              "perf_gain": 8.5
+            },
+            {
+              "round": 2,
+              "perf_gain": 11.9
+            },
+            {
+              "round": 3,
+              "perf_gain": 13.3
+            },
+            {
+              "round": 4,
+              "perf_gain": 14.4
+            },
+            {
+              "round": 5,
+              "perf_gain": 15.1
+            },
+            {
+              "round": 6,
+              "perf_gain": 15.4
+            },
+            {
+              "round": 7,
+              "perf_gain": 15.7
+            },
+            {
+              "round": 8,
+              "perf_gain": 16
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
